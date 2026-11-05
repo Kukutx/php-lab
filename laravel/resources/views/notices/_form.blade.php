@@ -26,7 +26,7 @@
 </div>
 
 <div class="mb-3">
-    <label for="published_at" class="form-label">Publish at <small class="text-muted">(empty = draft)</small></label>
+    <label for="published_at" class="form-label">Publish at <small class="text-muted">(empty = draft, future date = scheduled)</small></label>
     <input id="published_at" name="published_at" type="datetime-local"
            class="form-control @error('published_at') is-invalid @enderror"
            value="{{ old('published_at', $notice->published_at?->format('Y-m-d\TH:i')) }}">

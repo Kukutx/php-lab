@@ -85,7 +85,7 @@ $view = View::create([
       'position' => 1,
       'display_options' => [
         'path' => 'avvisi',
-        'menu' => ['type' => 'normal', 'title' => 'Avvisi', 'menu_name' => 'main', 'weight' => 0],
+        'menu' => ['type' => 'normal', 'title' => 'Avvisi', 'menu_name' => 'main', 'weight' => 10],
       ],
     ],
     'block_1' => [

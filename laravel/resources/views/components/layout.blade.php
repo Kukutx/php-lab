@@ -10,7 +10,7 @@
 <body class="bg-light">
 <nav class="navbar navbar-dark bg-primary mb-4">
     <div class="container">
-        <a class="navbar-brand" href="{{ route('notices.index') }}">🏛️ Comune di Esempio <small class="opacity-75">· Notices board (Laravel)</small></a>
+        <a class="navbar-brand" href="{{ route('notices.index') }}">🏛️ Comune di Esempio <small class="opacity-75 d-none d-sm-inline">· Notices board (Laravel)</small></a>
         <a class="btn btn-light btn-sm" href="{{ route('notices.create') }}">+ New notice</a>
     </div>
 </nav>

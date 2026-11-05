@@ -183,7 +183,7 @@ display:
       menu:
         type: normal
         title: Avvisi
-        weight: 0
+        weight: 10
         menu_name: main
     cache_metadata:
       max-age: -1

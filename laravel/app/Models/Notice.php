@@ -66,6 +66,12 @@ class Notice extends Model
         return $query->whereNotNull('published_at')->where('published_at', '<=', now());
     }
 
+    /** Drafts (no date) and scheduled notices (date in the future). */
+    public function scopeUnpublished(Builder $query): Builder
+    {
+        return $query->where(fn (Builder $q) => $q->whereNull('published_at')->orWhere('published_at', '>', now()));
+    }
+
     public function isPublished(): bool
     {
         return $this->published_at !== null && $this->published_at->isPast();

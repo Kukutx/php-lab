@@ -97,4 +97,14 @@ class NoticeTest extends TestCase
 
         $this->assertSame(1, Notice::published()->count());
     }
+
+    public function test_index_hides_drafts_unless_asked(): void
+    {
+        Notice::factory()->create(['title' => 'Live notice']);
+        Notice::factory()->draft()->create(['title' => 'Secret draft']);
+
+        $this->get(route('notices.index'))->assertSee('Live notice')->assertDontSee('Secret draft');
+        $this->get(route('notices.index', ['status' => 'drafts']))->assertSee('Secret draft')->assertDontSee('Live notice');
+        $this->get(route('notices.index', ['status' => 'all']))->assertSee('Secret draft')->assertSee('Live notice');
+    }
 }

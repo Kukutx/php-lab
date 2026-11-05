@@ -20,16 +20,17 @@ require_once __DIR__ . '/helpers.php';
     </div>
 </form>
 
+<div class="table-responsive">
 <table class="table table-hover bg-white shadow-sm">
-    <thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Category</th><th class="text-end">Actions</th></tr></thead>
+    <thead><tr><th>Name</th><th>Email</th><th class="d-none d-md-table-cell">Phone</th><th>Category</th><th class="text-end">Actions</th></tr></thead>
     <tbody>
     <?php foreach ($contacts as $c): ?>
         <tr>
             <td><?= e($c->name) ?></td>
             <td><?= e($c->email) ?></td>
-            <td><?= e($c->phone ?? '—') ?></td>
+            <td class="d-none d-md-table-cell"><?= e($c->phone ?? '—') ?></td>
             <td><span class="badge bg-<?= e($c->category->badge()) ?>"><?= e($c->category->label()) ?></span></td>
-            <td class="text-end">
+            <td class="text-end text-nowrap">
                 <a class="btn btn-sm btn-outline-primary" href="/contacts/<?= $c->id ?>/edit">Edit</a>
                 <form class="d-inline" method="post" action="/contacts/<?= $c->id ?>/delete" onsubmit="return confirm('Delete this contact?')">
                     <input type="hidden" name="_csrf" value="<?= e(App\Http\Csrf::token()) ?>">
@@ -43,3 +44,4 @@ require_once __DIR__ . '/helpers.php';
     <?php endif; ?>
     </tbody>
 </table>
+</div>

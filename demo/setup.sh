@@ -92,6 +92,10 @@ PHP
   wp plugin activate sqlite-database-integration comune-avvisi --allow-root
   wp option update blogdescription "Sito istituzionale" --allow-root
   wp rewrite structure '/%postname%/' --hard --allow-root
+  # Italian admin and front end. Optional: needs internet (Codespaces has it).
+  wp language core install it_IT --activate --allow-root || echo "   (Italian language pack skipped)"
+  # Elementor, for the custom "Avvisi" widget in our plugin. Optional as well.
+  wp plugin install elementor --activate --allow-root || echo "   (Elementor skipped)"
   wp eval-file scripts/demo-content.php --allow-root
 )
 

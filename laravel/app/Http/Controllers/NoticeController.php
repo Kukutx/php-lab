@@ -18,8 +18,14 @@ class NoticeController extends Controller
     public function index(Request $request): View
     {
         $category = NoticeCategory::tryFrom((string) $request->query('category'));
+        // Visitors see published notices; drafts and scheduled ones are one click away.
+        $status = in_array($request->query('status'), ['published', 'drafts', 'all'], true)
+            ? $request->query('status')
+            : 'published';
 
         $notices = Notice::query()
+            ->when($status === 'published', fn ($q) => $q->published())
+            ->when($status === 'drafts', fn ($q) => $q->unpublished())
             ->when($category, fn ($q) => $q->where('category', $category))
             ->when($request->filled('q'), fn ($q) => $q->where('title', 'like', '%'.$request->query('q').'%'))
             ->orderByDesc('published_at')
@@ -30,12 +36,13 @@ class NoticeController extends Controller
             'notices' => $notices,
             'categories' => NoticeCategory::cases(),
             'activeCategory' => $category,
+            'status' => $status,
         ]);
     }
 
     public function create(): View
     {
-        return view('notices.create', ['notice' => new Notice, 'categories' => NoticeCategory::cases()]);
+        return view('notices.create', ['notice' => new Notice(['published_at' => now()]), 'categories' => NoticeCategory::cases()]);
     }
 
     public function store(NoticeRequest $request): RedirectResponse

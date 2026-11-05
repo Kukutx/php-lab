@@ -10,7 +10,7 @@ environment, so you can start any of them independently.
 |---|---|---|
 | [`pdo-crud/`](pdo-crud) | Plain PHP 8 contacts CRUD: PDO prepared statements, Composer + PSR-4, enums, readonly classes, `match`, exceptions, CSRF/XSS protection, PHPUnit | ✅ |
 | [`laravel/`](laravel) | Laravel tour: routes, controllers, Eloquent + migrations, form requests / validation, Blade, feature tests | ✅ |
-| [`notes/`](notes) | Interview cheat sheet (Chinese notes + one-line Italian answers) | ✅ |
+| [`notes/`](notes) | Interview cheat sheet (Chinese notes + one-line Italian answers) and [how it was built and tested](notes/how-i-built-it.md) (Chinese) | ✅ |
 | [`drupal10/`](drupal10) | Municipal site: content type, taxonomy, Views, blocks, custom module (routing, controller, services/DI, config form, block plugin), Bootstrap Italia theme ("modello Comuni" home + Avvisi list), config management, 9→10 upgrade guide, WCAG notes | ✅ |
 | [`wordpress/`](wordpress) | Child theme (hooks, template hierarchy), plugin with custom post type, taxonomy, secure meta box, shortcode, REST meta and an Elementor widget; Elementor notes | ✅ |
 

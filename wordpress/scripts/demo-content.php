@@ -48,4 +48,60 @@ $home = wp_insert_post(
 update_option( 'show_on_front', 'page' );
 update_option( 'page_on_front', $home );
 
+// Remove the default sample content ("Hello world!", "Sample Page", the comment).
+$samples = get_posts(
+	array(
+		'post_type'   => 'post',
+		'name'        => 'hello-world',
+		'post_status' => 'any',
+	)
+);
+foreach ( $samples as $sample ) {
+	wp_delete_post( $sample->ID, true ); // Also deletes its comment.
+}
+$sample_page = get_page_by_path( 'sample-page' );
+if ( $sample_page ) {
+	wp_delete_post( $sample_page->ID, true );
+}
+
+// Footer widgets: replace the default English widgets with a contacts block.
+update_option(
+	'widget_block',
+	array(
+		2              => array( 'content' => '<!-- wp:heading {"level":3} --><h3 class="wp-block-heading">Contatti</h3><!-- /wp:heading --><!-- wp:paragraph --><p>Piazza del Municipio 1, 00000 Esempio<br>PEC: protocollo@pec.comune.esempio.it</p><!-- /wp:paragraph -->' ),
+		'_multiwidget' => 1,
+	)
+);
+update_option(
+	'sidebars_widgets',
+	array(
+		'wp_inactive_widgets' => array(),
+		'sidebar-1'           => array( 'block-2' ),
+		'array_version'       => 3,
+	)
+);
+
+// Primary menu: Home, Avvisi, one link per category and "Accedi".
+$menu_id = wp_create_nav_menu( 'Menu principale' );
+if ( ! is_wp_error( $menu_id ) ) {
+	$links = array(
+		'Home'    => home_url( '/' ),
+		'Avvisi'  => get_post_type_archive_link( 'avviso' ),
+		'Servizi' => get_term_link( 'servizi', 'categoria_avviso' ),
+		'Accedi'  => wp_login_url(),
+	);
+	foreach ( $links as $label => $url ) {
+		wp_update_nav_menu_item(
+			$menu_id,
+			0,
+			array(
+				'menu-item-title'  => $label,
+				'menu-item-url'    => is_wp_error( $url ) ? home_url( '/' ) : $url,
+				'menu-item-status' => 'publish',
+			)
+		);
+	}
+	set_theme_mod( 'nav_menu_locations', array( 'primary' => $menu_id ) );
+}
+
 echo "Demo content ready.\n";

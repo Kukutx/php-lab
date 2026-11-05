@@ -2,15 +2,22 @@
     <h1 class="h3 mb-3">Notices <span class="badge text-bg-secondary">{{ $notices->total() }}</span></h1>
 
     <form method="GET" action="{{ route('notices.index') }}" class="row g-2 mb-4">
-        <div class="col-md-6">
+        <div class="col-md-4">
             <input class="form-control" name="q" value="{{ request('q') }}" placeholder="Search by title" aria-label="Search by title">
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
             <select class="form-select" name="category" aria-label="Category">
                 <option value="">All categories</option>
                 @foreach ($categories as $cat)
                     <option value="{{ $cat->value }}" @selected($activeCategory === $cat)>{{ $cat->label() }}</option>
                 @endforeach
+            </select>
+        </div>
+        <div class="col-md-3">
+            <select class="form-select" name="status" aria-label="Status">
+                <option value="published" @selected($status === 'published')>Published</option>
+                <option value="drafts" @selected($status === 'drafts')>Drafts &amp; scheduled</option>
+                <option value="all" @selected($status === 'all')>All</option>
             </select>
         </div>
         <div class="col-md-2 d-grid">
@@ -28,7 +35,7 @@
                             @if ($notice->isPublished())
                                 <small class="text-muted">{{ $notice->published_at->format('d/m/Y') }}</small>
                             @else
-                                <span class="badge text-bg-light border">Draft</span>
+                                <span class="badge text-bg-light border">{{ $notice->published_at ? 'Scheduled '.$notice->published_at->format('d/m/Y') : 'Draft' }}</span>
                             @endif
                         </div>
                         <h2 class="h5 card-title">

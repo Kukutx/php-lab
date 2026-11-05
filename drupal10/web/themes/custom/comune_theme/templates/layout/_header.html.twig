@@ -4,8 +4,23 @@
     <div class="container">
       <div class="row"><div class="col-12">
         <div class="it-header-slim-wrapper-content">
-          <a class="d-lg-block navbar-brand" href="#">{{ ente_appartenenza }}</a>
-          <div class="it-header-slim-right-zone">{{ page.header_slim }}</div>
+          <a class="d-lg-block navbar-brand" href="https://www.example.com" rel="external">{{ ente_appartenenza }}</a>
+          <div class="it-header-slim-right-zone">
+            {{ page.header_slim }}
+            {# Login / account link, like the "Accedi all'area personale" button of the Comuni model. #}
+            {% if logged_in %}
+              <a class="btn btn-primary btn-icon btn-full" href="{{ path('user.page') }}">
+                <span class="rounded-icon"><svg class="icon icon-primary" aria-hidden="true"><use href="{{ sprites }}#it-user"></use></svg></span>
+                <span class="d-none d-lg-block">Area personale</span>
+              </a>
+              <a class="btn btn-primary btn-full ms-1" href="{{ path('user.logout') }}">Esci</a>
+            {% else %}
+              <a class="btn btn-primary btn-icon btn-full" href="{{ path('user.login') }}">
+                <span class="rounded-icon"><svg class="icon icon-primary" aria-hidden="true"><use href="{{ sprites }}#it-user"></use></svg></span>
+                <span class="d-none d-lg-block">Accedi all'area personale</span>
+              </a>
+            {% endif %}
+          </div>
         </div>
       </div></div>
     </div>
