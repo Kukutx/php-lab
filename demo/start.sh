@@ -9,7 +9,7 @@ ROOT=$PWD
 start() { # port, docroot, router (optional, relative to the repo root)
   pkill -f "php -S 0.0.0.0:$1" 2>/dev/null || true
   # Run from the docroot: routers like Laravel's server.php use getcwd().
-  (cd "$ROOT/$2" && nohup php -S "0.0.0.0:$1" -t . ${3:+"$ROOT/$3"} > "/tmp/php-lab/$1.log" 2>&1 &)
+  (cd "$ROOT/$2" && setsid nohup php -S "0.0.0.0:$1" -t . ${3:+"$ROOT/$3"} > "/tmp/php-lab/$1.log" 2>&1 < /dev/null &)
 }
 
 start 8001 pdo-crud/public
