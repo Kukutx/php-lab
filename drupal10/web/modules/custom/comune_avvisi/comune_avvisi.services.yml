@@ -1,0 +1,7 @@
+# Services are registered in the container; their dependencies are injected
+# (the "@" prefix means "another service"). Nothing calls \Drupal::service()
+# inside our classes, which keeps them testable.
+services:
+  comune_avvisi.repository:
+    class: Drupal\comune_avvisi\AvvisiRepository
+    arguments: ['@entity_type.manager', '@datetime.time', '@config.factory']

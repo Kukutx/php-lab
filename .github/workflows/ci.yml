@@ -52,3 +52,20 @@ jobs:
       - run: cp .env.example .env && php artisan key:generate
       - run: php artisan test
       - run: vendor/bin/pint --test
+
+  drupal10:
+    name: drupal10 (Drupal coding standards)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: drupal10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: gd, pdo_sqlite
+          coverage: none
+      - run: composer install --no-interaction --no-progress
+      - run: vendor/bin/phpcs --config-set installed_paths vendor/drupal/coder/coder_sniffer,vendor/sirbrillig/phpcs-variable-analysis,vendor/slevomat/coding-standard
+      - run: vendor/bin/phpcs

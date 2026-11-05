@@ -1,0 +1,13 @@
+name: 'Comune Avvisi'
+type: module
+description: 'Municipal notices (avvisi): content model, settings form, summary page and "highlighted notices" block.'
+package: 'php-lab'
+core_version_requirement: ^10.3 || ^11
+dependencies:
+  - drupal:node
+  - drupal:taxonomy
+  - drupal:datetime
+  - drupal:text
+  - drupal:views
+  - drupal:options
+configure: comune_avvisi.settings

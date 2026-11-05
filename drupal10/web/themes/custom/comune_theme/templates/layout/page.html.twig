@@ -1,0 +1,17 @@
+{#
+/**
+ * @file
+ * Default page: header, breadcrumb, main content, footer.
+ */
+#}
+{% include '@comune_theme/layout/_header.html.twig' %}
+
+<main id="main-content" tabindex="-1">
+  <div class="container my-4">
+    {{ page.breadcrumb }}
+    {{ page.highlighted }}
+    {{ page.content }}
+  </div>
+</main>
+
+{% include '@comune_theme/layout/_footer.html.twig' %}

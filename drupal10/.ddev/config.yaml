@@ -1,0 +1,11 @@
+name: drupal10
+type: drupal10
+docroot: web
+php_version: "8.3"
+webserver_type: nginx-fpm
+database:
+  type: mariadb
+  version: "10.11"
+# DDEV writes web/sites/default/settings.ddev.php (DB credentials, hash salt)
+# on `ddev start`; that file is git-ignored.
+nodejs_version: "22"

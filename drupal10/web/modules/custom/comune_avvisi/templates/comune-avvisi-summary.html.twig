@@ -1,0 +1,31 @@
+{#
+/**
+ * @file
+ * Summary of notices. Twig auto-escapes every {{ }} value (XSS protection).
+ *
+ * Available variables:
+ * - intro: introduction text.
+ * - counts: category name => number of notices.
+ * - expiring: list of {title, url, date}.
+ */
+#}
+<div class="comune-avvisi-summary">
+  <h2 class="h4">{{ 'Notices by category'|t }}</h2>
+  <ul class="list-group mb-4">
+    {% for name, count in counts %}
+      <li class="list-group-item d-flex justify-content-between">
+        {{ name }} <span class="badge bg-primary">{{ count }}</span>
+      </li>
+    {% else %}
+      <li class="list-group-item">{{ 'No notices yet.'|t }}</li>
+    {% endfor %}
+  </ul>
+
+  <h2 class="h4">{{ 'Expiring soon'|t }}</h2>
+  <p>{{ intro }}</p>
+  <ul class="link-list">
+    {% for item in expiring %}
+      <li><a href="{{ item.url }}">{{ item.title }}</a> <small>({{ item.date }})</small></li>
+    {% endfor %}
+  </ul>
+</div>

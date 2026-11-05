@@ -1,0 +1,66 @@
+{#
+/**
+ * @file
+ * Home page following the "modello Comuni" structure:
+ * hero → in evidenza → ultimi avvisi → servizi.
+ * The regular page.content (the /node listing) is intentionally not printed.
+ */
+#}
+{% include '@comune_theme/layout/_header.html.twig' %}
+
+<main id="main-content" tabindex="-1">
+  {{ page.highlighted }}
+
+  <section class="it-hero-wrapper bg-primary" aria-labelledby="hero-title">
+    <div class="container">
+      <div class="row"><div class="col-12">
+        <div class="it-hero-text-wrapper bg-dark-transparent text-white">
+          <span class="it-category">{{ site_slogan }}</span>
+          <h1 id="hero-title" class="no_toc">Benvenuti nel sito del {{ site_name }}</h1>
+          <p class="d-none d-lg-block">Avvisi, servizi online e informazioni per cittadini, imprese e turisti.</p>
+          <div class="it-btn-container">
+            <a class="btn btn-sm btn-secondary" href="{{ path('view.avvisi.page_1') }}">Tutti gli avvisi</a>
+          </div>
+        </div>
+      </div></div>
+    </div>
+  </section>
+
+  <section class="container py-5" aria-labelledby="evidenza-title">
+    <h2 id="evidenza-title" class="mb-4">In evidenza</h2>
+    {{ page.home_evidenza }}
+  </section>
+
+  <section class="bg-light py-5" aria-labelledby="avvisi-title">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 id="avvisi-title" class="mb-0">Ultimi avvisi</h2>
+        <a href="{{ path('view.avvisi.page_1') }}" class="btn btn-outline-primary btn-sm">Vedi tutti</a>
+      </div>
+      {{ page.home_avvisi }}
+    </div>
+  </section>
+
+  <section class="container py-5" aria-labelledby="servizi-title">
+    <h2 id="servizi-title" class="mb-4">Servizi</h2>
+    <div class="row">
+      {% for servizio in servizi %}
+        <div class="col-12 col-md-4">
+          <div class="card-wrapper card-space">
+            <div class="card card-bg rounded shadow-sm">
+              <div class="card-body">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                  <svg class="icon icon-primary" aria-hidden="true"><use href="{{ sprites }}#{{ servizio.icon }}"></use></svg>
+                  <h3 class="card-title h5 mb-0">{{ servizio.title }}</h3>
+                </div>
+                <p class="card-text">{{ servizio.text }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+</main>
+
+{% include '@comune_theme/layout/_footer.html.twig' %}

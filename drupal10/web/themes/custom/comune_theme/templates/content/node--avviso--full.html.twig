@@ -1,0 +1,11 @@
+<article{{ attributes }}>
+  <div class="row">
+    <div class="col-lg-8">
+      <span class="badge bg-primary mb-2">{{ categoria }}</span>
+      <h1{{ title_attributes }}>{{ label }}</h1>
+      <p class="avviso-meta text-secondary">Pubblicato il {{ data }}{% if scaduto %} · <strong>Avviso scaduto</strong>{% endif %}</p>
+      <div class="lead-text">{{ content.body }}</div>
+      {{ content|without('body', 'field_categoria', 'links') }}
+    </div>
+  </div>
+</article>

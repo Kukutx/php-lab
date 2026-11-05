@@ -1,0 +1,22 @@
+uuid: b9341079-53a3-496a-84ac-0d23b47da6df
+langcode: en
+status: true
+dependencies:
+  module:
+    - datetime
+    - node
+_core:
+  default_config_hash: kvT2c4HdmOTxEdW72UA4HjxtuiHwtw_btdbtveF6bjU
+id: node.field_scadenza
+field_name: field_scadenza
+entity_type: node
+type: datetime
+settings:
+  datetime_type: date
+module: datetime
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,36 @@
+<?php
+
+/**
+ * @file
+ * Hooks for the Comune Avvisi module.
+ */
+
+declare(strict_types=1);
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function comune_avvisi_help(string $route_name, RouteMatchInterface $route_match): ?string {
+  if ($route_name === 'help.page.comune_avvisi') {
+    return '<p>' . t('Provides the "Avviso" content type, a summary page at /avvisi/riepilogo and a block with highlighted notices.') . '</p>';
+  }
+  return NULL;
+}
+
+/**
+ * Implements hook_theme().
+ *
+ * Declares the templates this module renders, with their default variables.
+ */
+function comune_avvisi_theme(): array {
+  return [
+    'comune_avvisi_summary' => [
+      'variables' => ['counts' => [], 'expiring' => [], 'intro' => ''],
+    ],
+    'comune_avvisi_highlighted' => [
+      'variables' => ['items' => []],
+    ],
+  ];
+}

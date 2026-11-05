@@ -1,0 +1,5 @@
+comune_avvisi.settings:
+  title: 'Comune Avvisi'
+  description: 'Configure the municipal notices.'
+  parent: system.admin_config_content
+  route_name: comune_avvisi.settings

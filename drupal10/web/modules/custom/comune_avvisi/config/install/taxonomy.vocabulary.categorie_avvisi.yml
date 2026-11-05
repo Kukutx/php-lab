@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+name: 'Categorie avvisi'
+vid: categorie_avvisi
+description: 'Categories used to filter notices.'
+weight: 0
+new_revision: false

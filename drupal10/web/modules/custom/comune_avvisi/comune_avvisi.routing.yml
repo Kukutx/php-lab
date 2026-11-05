@@ -1,0 +1,16 @@
+# Each route maps a path to a controller (or form) and declares who can see it.
+comune_avvisi.summary:
+  path: '/avvisi/riepilogo'
+  defaults:
+    _controller: '\Drupal\comune_avvisi\Controller\AvvisiController::summary'
+    _title: 'Riepilogo avvisi'
+  requirements:
+    _permission: 'access content'
+
+comune_avvisi.settings:
+  path: '/admin/config/content/comune-avvisi'
+  defaults:
+    _form: '\Drupal\comune_avvisi\Form\SettingsForm'
+    _title: 'Comune Avvisi settings'
+  requirements:
+    _permission: 'administer comune avvisi'

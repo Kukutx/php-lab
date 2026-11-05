@@ -1,0 +1,50 @@
+uuid: a500b58d-2a8b-4317-9e7d-a7546b3ee976
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.avviso.body
+    - field.field.node.avviso.field_categoria
+    - field.field.node.avviso.field_in_evidenza
+    - field.field.node.avviso.field_scadenza
+    - node.type.avviso
+  module:
+    - datetime
+    - text
+    - user
+id: node.avviso.default
+targetEntityType: node
+bundle: avviso
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_categoria:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: -1
+    region: content
+  field_scadenza:
+    type: datetime_default
+    label: inline
+    settings:
+      timezone_override: ''
+      format_type: html_date
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_in_evidenza: true

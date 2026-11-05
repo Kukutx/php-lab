@@ -1,0 +1,20 @@
+uuid: 158d6b63-a9b0-406c-8615-982f4f1d9bde
+langcode: en
+status: true
+dependencies:
+  module:
+    - comune_avvisi
+  theme:
+    - comune_theme
+id: comune_theme_evidenza
+theme: comune_theme
+region: home_evidenza
+weight: 0
+provider: null
+plugin: comune_avvisi_highlighted
+settings:
+  id: comune_avvisi_highlighted
+  label: ''
+  label_display: '0'
+  provider: comune_avvisi
+visibility: {  }

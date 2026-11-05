@@ -1,0 +1,23 @@
+{#
+/**
+ * @file
+ * Highlighted notices as Bootstrap Italia cards.
+ */
+#}
+<div class="row">
+  {% for item in items %}
+    <div class="col-12 col-lg-4">
+      <div class="card-wrapper card-space">
+        <div class="card card-bg">
+          <div class="card-body">
+            <div class="category-top">
+              <span class="category">{{ item.category }}</span>
+              <span class="data">{{ item.date }}</span>
+            </div>
+            <h3 class="card-title h5"><a href="{{ item.url }}">{{ item.title }}</a></h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>

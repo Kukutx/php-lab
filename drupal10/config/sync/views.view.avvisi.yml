@@ -1,0 +1,196 @@
+uuid: 6a5d06c8-e30b-4b78-94ba-637586703cc9
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - node.type.avviso
+    - system.menu.main
+    - taxonomy.vocabulary.categorie_avvisi
+  module:
+    - node
+    - taxonomy
+    - user
+id: avvisi
+label: Avvisi
+module: views
+description: 'List of municipal notices.'
+tag: ''
+base_table: node_field_data
+base_field: nid
+display:
+  default:
+    id: default
+    display_title: Default
+    display_plugin: default
+    position: 0
+    display_options:
+      title: Avvisi
+      pager:
+        type: mini
+        options:
+          pagination_heading_level: h4
+          items_per_page: 6
+      exposed_form:
+        type: basic
+        options:
+          submit_button: Filtra
+      access:
+        type: perm
+        options:
+          perm: 'access content'
+      cache:
+        type: tag
+        options: {  }
+      empty:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          plugin_id: text_custom
+          empty: true
+          content: 'Nessun avviso trovato.'
+      sorts:
+        created:
+          id: created
+          table: node_field_data
+          field: created
+          entity_type: node
+          entity_field: created
+          plugin_id: date
+          order: DESC
+          granularity: second
+      filters:
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+          expose:
+            operator: ''
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          value:
+            avviso: avviso
+        field_categoria_target_id:
+          id: field_categoria_target_id
+          table: node__field_categoria
+          field: field_categoria_target_id
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value: {  }
+          exposed: true
+          expose:
+            operator_id: field_categoria_target_id_op
+            label: Categoria
+            identifier: categoria
+            remember: false
+            multiple: false
+            reduce: false
+          vid: categorie_avvisi
+          type: select
+          hierarchy: false
+          limit: true
+          error_message: true
+      style:
+        type: default
+        options:
+          row_class: 'col-12 col-md-6 col-lg-4'
+      row:
+        type: 'entity:node'
+        options:
+          view_mode: teaser
+      query:
+        type: views_query
+        options: {  }
+      display_extenders: {  }
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_interface'
+        - url
+        - url.query_args
+        - 'user.node_grants:view'
+        - user.permissions
+      tags: {  }
+  block_1:
+    id: block_1
+    display_title: 'Ultimi avvisi'
+    display_plugin: block
+    position: 2
+    display_options:
+      title: 'Ultimi avvisi'
+      pager:
+        type: some
+        options:
+          items_per_page: 3
+      filters:
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+          expose:
+            operator: ''
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          value:
+            avviso: avviso
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      defaults:
+        title: false
+        pager: false
+        filters: false
+        filter_groups: false
+      display_extenders: {  }
+      block_description: 'Ultimi avvisi'
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_interface'
+        - 'user.node_grants:view'
+        - user.permissions
+      tags: {  }
+  page_1:
+    id: page_1
+    display_title: Page
+    display_plugin: page
+    position: 1
+    display_options:
+      display_extenders: {  }
+      path: avvisi
+      menu:
+        type: normal
+        title: Avvisi
+        weight: 0
+        menu_name: main
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_interface'
+        - url
+        - url.query_args
+        - 'user.node_grants:view'
+        - user.permissions
+      tags: {  }

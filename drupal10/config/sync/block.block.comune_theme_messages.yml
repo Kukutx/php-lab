@@ -1,0 +1,20 @@
+uuid: d617e85f-ce43-4a8d-bc62-a98c443f5da2
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - comune_theme
+id: comune_theme_messages
+theme: comune_theme
+region: highlighted
+weight: -10
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: ''
+  label_display: '0'
+  provider: system
+visibility: {  }

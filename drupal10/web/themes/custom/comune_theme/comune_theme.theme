@@ -1,0 +1,83 @@
+<?php
+
+/**
+ * @file
+ * Preprocess functions: prepare variables in PHP so Twig templates stay simple.
+ */
+
+declare(strict_types=1);
+
+use Drupal\node\NodeInterface;
+
+/**
+ * URL of the Bootstrap Italia SVG sprite, served from the theme folder.
+ *
+ * SVG <use> cannot reference a sprite on another domain, so it must be local.
+ */
+function comune_theme_asset_url(string $path): string {
+  $theme_path = \Drupal::service('extension.list.theme')->getPath('comune_theme');
+  return base_path() . $theme_path . '/node_modules/bootstrap-italia/dist/' . $path;
+}
+
+/**
+ * Implements hook_page_attachments_alter().
+ */
+function comune_theme_page_attachments_alter(array &$attachments): void {
+  $attachments['#attached']['drupalSettings']['comuneTheme']['fontsPath'] = comune_theme_asset_url('fonts');
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for page templates.
+ */
+function comune_theme_preprocess_page(array &$variables): void {
+  $config = \Drupal::config('system.site');
+  $variables['site_name'] = $config->get('name');
+  $variables['site_slogan'] = $config->get('slogan') ?: 'Sito istituzionale';
+  $variables['ente_appartenenza'] = 'Regione di Esempio';
+  $variables['sprites'] = comune_theme_asset_url('svg/sprites.svg');
+
+  // Services cards on the home page ("modello Comuni" section "Servizi").
+  $variables['servizi'] = [
+    [
+      'title' => 'Anagrafe e stato civile',
+      'text' => 'Certificati, carta d\'identità elettronica, cambio di residenza.',
+      'icon' => 'it-user',
+    ],
+    [
+      'title' => 'Tributi e pagamenti',
+      'text' => 'IMU, TARI e pagamenti online con pagoPA.',
+      'icon' => 'it-card',
+    ],
+    [
+      'title' => 'Mobilità e trasporti',
+      'text' => 'Permessi ZTL, parcheggi e trasporto pubblico.',
+      'icon' => 'it-map-marker',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for node templates.
+ */
+function comune_theme_preprocess_node(array &$variables): void {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+  if ($node->bundle() !== 'avviso') {
+    return;
+  }
+
+  $variables['categoria'] = $node->get('field_categoria')->entity?->label();
+  $variables['data'] = date('d/m/Y', (int) $node->getCreatedTime());
+  $variables['scaduto'] = comune_theme_is_expired($node);
+  $variables['sprites'] = comune_theme_asset_url('svg/sprites.svg');
+  // The date depends on "now", so do not cache the rendered node for ever.
+  $variables['#cache']['max-age'] = 86400;
+}
+
+/**
+ * Whether the "Valido fino al" date is in the past.
+ */
+function comune_theme_is_expired(NodeInterface $node): bool {
+  $date = $node->get('field_scadenza')->date;
+  return $date !== NULL && $date->getTimestamp() < \Drupal::time()->getRequestTime();
+}

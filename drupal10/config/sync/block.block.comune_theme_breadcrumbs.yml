@@ -1,0 +1,20 @@
+uuid: 01b7afe3-5acb-413e-aace-51930e28ae02
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - comune_theme
+id: comune_theme_breadcrumbs
+theme: comune_theme
+region: breadcrumb
+weight: 0
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: ''
+  label_display: '0'
+  provider: system
+visibility: {  }

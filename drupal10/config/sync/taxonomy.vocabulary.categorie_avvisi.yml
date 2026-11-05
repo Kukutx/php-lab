@@ -1,0 +1,11 @@
+uuid: d4f37d17-fcd3-43aa-963f-82eb5eb72d3c
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: 8kolfoJVxc-hyv8CLRPI_f4r2bmRqNzjvENAX5Eenys
+name: 'Categorie avvisi'
+vid: categorie_avvisi
+description: 'Categories used to filter notices.'
+weight: 0
+new_revision: false

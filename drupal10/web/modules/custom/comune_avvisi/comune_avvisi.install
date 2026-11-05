@@ -1,0 +1,76 @@
+<?php
+
+/**
+ * @file
+ * Install hooks for Comune Avvisi.
+ */
+
+declare(strict_types=1);
+
+use Drupal\taxonomy\Entity\Term;
+
+/**
+ * Implements hook_install().
+ *
+ * Config in config/install creates the content type and fields. Here we do
+ * what YAML alone cannot do nicely: add the body field, configure the form
+ * and view displays, and create the default category terms.
+ */
+function comune_avvisi_install(bool $is_syncing): void {
+  // During `drush cim` the displays and terms come from config/content.
+  if ($is_syncing) {
+    return;
+  }
+
+  $type = \Drupal::entityTypeManager()->getStorage('node_type')->load('avviso');
+  node_add_body_field($type, 'Testo');
+
+  /** @var \Drupal\Core\Entity\EntityDisplayRepositoryInterface $displays */
+  $displays = \Drupal::service('entity_display.repository');
+
+  $displays->getFormDisplay('node', 'avviso')
+    ->setComponent('field_categoria', ['type' => 'options_select', 'weight' => 1])
+    ->setComponent('field_scadenza', ['type' => 'datetime_default', 'weight' => 2])
+    ->setComponent('field_in_evidenza', [
+      'type' => 'boolean_checkbox',
+      'weight' => 3,
+      'settings' => ['display_label' => TRUE],
+    ])
+    ->save();
+
+  $displays->getViewDisplay('node', 'avviso')
+    ->setComponent('field_categoria', [
+      'type' => 'entity_reference_label',
+      'label' => 'inline',
+      'weight' => -1,
+      'settings' => ['link' => FALSE],
+    ])
+    ->setComponent('field_scadenza', [
+      'type' => 'datetime_default',
+      'label' => 'inline',
+      'weight' => 5,
+      'settings' => ['format_type' => 'html_date'],
+    ])
+    ->removeComponent('field_in_evidenza')
+    ->save();
+
+  $displays->getViewDisplay('node', 'avviso', 'teaser')
+    ->setComponent('field_categoria', [
+      'type' => 'entity_reference_label',
+      'label' => 'hidden',
+      'settings' => ['link' => FALSE],
+    ])
+    ->setComponent('body', [
+      'type' => 'text_summary_or_trimmed',
+      'label' => 'hidden',
+      'settings' => ['trim_length' => 160],
+    ])
+    ->removeComponent('field_scadenza')
+    ->removeComponent('field_in_evidenza')
+    ->removeComponent('links')
+    ->save();
+
+  foreach (['Lavori stradali', 'Eventi', 'Servizi', 'Emergenze'] as $weight => $name) {
+    Term::create(['vid' => 'categorie_avvisi', 'name' => $name, 'weight' => $weight])->save();
+  }
+}

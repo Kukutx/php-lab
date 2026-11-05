@@ -1,0 +1,10 @@
+/* Small additions on top of Bootstrap Italia. Keep overrides minimal so
+   upgrades of the design system stay easy. */
+.visually-hidden-focusable:focus { position: static; }
+.it-hero-wrapper .it-hero-text-wrapper { padding-top: 3rem; padding-bottom: 3rem; }
+.avviso-meta { font-size: .875rem; }
+.views-exposed-form { display: flex; gap: 1rem; align-items: flex-end; flex-wrap: wrap; margin-bottom: 2rem; }
+.views-exposed-form .form-item { margin: 0; min-width: 16rem; }
+.views-exposed-form select { display: block; width: 100%; padding: .5rem; border: 1px solid #5d7083; border-radius: 4px; }
+.views-exposed-form input[type="submit"] { padding: .5rem 1.5rem; }
+.views-exposed-form input[type="submit"] { background: #0066cc; color: #fff; border: 0; border-radius: 4px; font-weight: 600; }

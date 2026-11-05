@@ -1,0 +1,9 @@
+{
+  "name": "comune_theme",
+  "private": true,
+  "description": "Front-end dependencies of the Comune theme. Run `npm ci` in this folder after cloning.",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap-italia": "2.13.0"
+  }
+}

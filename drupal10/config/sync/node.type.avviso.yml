@@ -1,0 +1,13 @@
+uuid: d537f0a6-d1ba-4152-acc1-4e16df696158
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: RhTFDSG636bgogUNqbk_zyb3GlztkxlcqO_2KICiFVA
+name: Avviso
+type: avviso
+description: 'A public notice of the municipality (roadworks, events, services, emergencies).'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: false

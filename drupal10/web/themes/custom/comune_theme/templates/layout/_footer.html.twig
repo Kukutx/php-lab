@@ -1,0 +1,21 @@
+<footer class="it-footer" id="footer">
+  <div class="it-footer-main">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 footer-items-wrapper logo-wrapper">
+          <a href="{{ path('<front>') }}" class="text-white text-decoration-none d-flex align-items-center gap-2 py-4">
+            <svg class="icon icon-white" aria-hidden="true"><use href="{{ sprites }}#it-pa"></use></svg>
+            <span class="h4 mb-0">{{ site_name }}</span>
+          </a>
+        </div>
+      </div>
+      <div class="row pb-4">
+        <div class="col-md-4 text-white">
+          <h3 class="h6 text-uppercase">Contatti</h3>
+          <p class="mb-0">Piazza del Municipio 1<br>00000 Esempio<br>PEC: protocollo@pec.comune.esempio.it</p>
+        </div>
+        <div class="col-md-8">{{ page.footer }}</div>
+      </div>
+    </div>
+  </div>
+</footer>

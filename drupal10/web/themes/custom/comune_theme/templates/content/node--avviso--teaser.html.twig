@@ -1,0 +1,26 @@
+{#
+/**
+ * @file
+ * Notice as a Bootstrap Italia card (teaser view mode).
+ * Variables categoria, data, scaduto come from comune_theme_preprocess_node().
+ */
+#}
+<article{{ attributes.addClass('card-wrapper', 'card-space') }}>
+  <div class="card card-bg rounded shadow-sm">
+    <div class="card-body">
+      <div class="category-top">
+        {% if categoria %}<span class="category">{{ categoria }}</span>{% endif %}
+        <span class="data">{{ data }}</span>
+      </div>
+      <h3{{ title_attributes.addClass('card-title', 'h5') }}>
+        <a href="{{ url }}" class="text-decoration-none">{{ label }}</a>
+      </h3>
+      {% if scaduto %}<span class="badge bg-secondary mb-2">Scaduto</span>{% endif %}
+      <div class="card-text">{{ content.body }}</div>
+      <a class="read-more" href="{{ url }}">
+        <span class="text">Leggi di più<span class="visually-hidden"> su {{ label }}</span></span>
+        <svg class="icon" aria-hidden="true"><use href="{{ sprites }}#it-arrow-right"></use></svg>
+      </a>
+    </div>
+  </div>
+</article>

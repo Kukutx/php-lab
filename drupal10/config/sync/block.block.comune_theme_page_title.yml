@@ -1,0 +1,18 @@
+uuid: 6b6f04e7-8062-4334-938d-c541a9b8a6bd
+langcode: en
+status: true
+dependencies:
+  theme:
+    - comune_theme
+id: comune_theme_page_title
+theme: comune_theme
+region: content
+weight: -5
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: ''
+  label_display: '0'
+  provider: core
+visibility: {  }

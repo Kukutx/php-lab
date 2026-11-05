@@ -1,0 +1,21 @@
+# A library groups CSS/JS so Drupal can aggregate them and attach them only
+# where needed. Bootstrap Italia is installed with npm inside the theme
+# (`npm ci`) and served from our own domain: no third-party CDN, which also
+# matters for privacy (GDPR) on public administration sites.
+bootstrap-italia:
+  version: 2.13.0
+  css:
+    base:
+      node_modules/bootstrap-italia/dist/css/bootstrap-italia.min.css: { minified: true }
+  js:
+    js/public-path.js: {}
+    node_modules/bootstrap-italia/dist/js/bootstrap-italia.bundle.min.js: { minified: true }
+  dependencies:
+    - core/drupalSettings
+
+global:
+  css:
+    theme:
+      css/comune.css: {}
+  dependencies:
+    - comune_theme/bootstrap-italia

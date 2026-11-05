@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_in_evidenza
+    - node.type.avviso
+id: node.avviso.field_in_evidenza
+field_name: field_in_evidenza
+entity_type: node
+bundle: avviso
+label: 'In evidenza'
+description: 'Show this notice in the highlighted block on the home page.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Sì'
+  off_label: 'No'
+field_type: boolean

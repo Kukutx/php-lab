@@ -1,0 +1,20 @@
+uuid: ae893c4f-69d6-4076-997e-9b5e37af6fe2
+langcode: en
+status: true
+dependencies:
+  theme:
+    - comune_theme
+id: comune_theme_local_tasks
+theme: comune_theme
+region: content
+weight: -4
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: ''
+  label_display: '0'
+  provider: core
+  primary: true
+  secondary: true
+visibility: {  }

@@ -1,0 +1,18 @@
+name: 'Comune Theme'
+type: theme
+description: 'Bootstrap Italia theme following the Designers Italia "modello Comuni" layout.'
+package: 'php-lab'
+core_version_requirement: ^10.3 || ^11
+# stable9 gives us clean, stable core markup to override.
+base theme: stable9
+libraries:
+  - comune_theme/global
+regions:
+  header_slim: 'Header slim (ente di appartenenza)'
+  primary_menu: 'Primary menu'
+  breadcrumb: Breadcrumb
+  highlighted: Highlighted
+  content: Content
+  home_evidenza: 'Home: in evidenza'
+  home_avvisi: 'Home: ultimi avvisi'
+  footer: Footer

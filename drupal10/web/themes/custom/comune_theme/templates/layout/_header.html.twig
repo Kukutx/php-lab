@@ -1,0 +1,47 @@
+{# Header following Bootstrap Italia "header" component (slim + center + navbar). #}
+<header class="it-header-wrapper" data-bs-target="#header-nav-wrapper">
+  <div class="it-header-slim-wrapper">
+    <div class="container">
+      <div class="row"><div class="col-12">
+        <div class="it-header-slim-wrapper-content">
+          <a class="d-lg-block navbar-brand" href="#">{{ ente_appartenenza }}</a>
+          <div class="it-header-slim-right-zone">{{ page.header_slim }}</div>
+        </div>
+      </div></div>
+    </div>
+  </div>
+  <div class="it-nav-wrapper">
+    <div class="it-header-center-wrapper">
+      <div class="container">
+        <div class="row"><div class="col-12">
+          <div class="it-header-center-content-wrapper">
+            <div class="it-brand-wrapper">
+              <a href="{{ path('<front>') }}">
+                <svg class="icon" aria-hidden="true"><use href="{{ sprites }}#it-pa"></use></svg>
+                <div class="it-brand-text">
+                  <div class="it-brand-title">{{ site_name }}</div>
+                  <div class="it-brand-tagline d-none d-md-block">{{ site_slogan }}</div>
+                </div>
+              </a>
+            </div>
+            <div class="it-right-zone">
+              <div class="it-search-wrapper">
+                <span class="d-none d-md-block">Cerca</span>
+                <a class="search-link rounded-icon" href="{{ path('search.view') }}" aria-label="Cerca nel sito">
+                  <svg class="icon" aria-hidden="true"><use href="{{ sprites }}#it-search"></use></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div></div>
+      </div>
+    </div>
+    <div class="it-header-navbar-wrapper" id="header-nav-wrapper">
+      <div class="container">
+        <div class="row"><div class="col-12">
+          {{ page.primary_menu }}
+        </div></div>
+      </div>
+    </div>
+  </div>
+</header>
