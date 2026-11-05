@@ -1,0 +1,25 @@
+{
+  "name": "php-lab demo",
+  "build": { "dockerfile": "Dockerfile" },
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": { "version": "22" }
+  },
+  "forwardPorts": [8001, 8002, 8003, 8004],
+  "portsAttributes": {
+    "8001": { "label": "pdo-crud", "onAutoForward": "notify" },
+    "8002": { "label": "laravel", "onAutoForward": "notify" },
+    "8003": { "label": "drupal10", "onAutoForward": "notify" },
+    "8004": { "label": "wordpress", "onAutoForward": "notify" }
+  },
+  "postCreateCommand": "bash demo/setup.sh",
+  "postStartCommand": "bash demo/start.sh",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "bmewburn.vscode-intelephense-client",
+        "xdebug.php-debug"
+      ]
+    }
+  },
+  "hostRequirements": { "cpus": 2, "memory": "8gb" }
+}

@@ -14,6 +14,26 @@ environment, so you can start any of them independently.
 | [`drupal10/`](drupal10) | Municipal site: content type, taxonomy, Views, blocks, custom module (routing, controller, services/DI, config form, block plugin), Bootstrap Italia theme ("modello Comuni" home + Avvisi list), config management, 9→10 upgrade guide, WCAG notes | ✅ |
 | [`wordpress/`](wordpress) | Child theme (hooks, template hierarchy), plugin with custom post type, taxonomy, secure meta box, shortcode, REST meta and an Elementor widget; Elementor notes | ✅ |
 
+## Try it online (GitHub Codespaces)
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/Kukutx/php-lab?quickstart=1)
+
+1. Click the badge (or **Code → Codespaces → Create codespace on main**).
+2. Wait for the first setup (≈5–10 min): `demo/setup.sh` installs Composer/npm
+   dependencies and creates the four sites on SQLite with demo content.
+3. Open the **Ports** tab and click the globe icon next to a port:
+
+| Port | Site | Login |
+|---|---|---|
+| 8001 | pdo-crud → `/contacts` | – |
+| 8002 | laravel → `/notices` | – |
+| 8003 | drupal10 | `admin` / `admin` |
+| 8004 | wordpress (`/wp-admin`) | `admin` / `admin` |
+
+Servers start again automatically when the codespace resumes
+(`bash demo/start.sh`); rebuild all demo data with `bash demo/setup.sh`.
+The demo uses PHP's built-in web server: fine for development, never for production.
+
 ## Quick start
 
 ```bash
