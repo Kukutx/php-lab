@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Xdebug: pdo-crud (DDEV)",
+            "type": "php",
+            "request": "launch",
+            "port": 9003,
+            "pathMappings": { "/var/www/html": "${workspaceFolder}/pdo-crud" }
+        },
+        {
+            "name": "Xdebug: laravel (DDEV)",
+            "type": "php",
+            "request": "launch",
+            "port": 9003,
+            "pathMappings": { "/var/www/html": "${workspaceFolder}/laravel" }
+        }
+    ]
+}

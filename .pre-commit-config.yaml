@@ -1,0 +1,7 @@
+# Install once: pip install pre-commit && pre-commit install
+# Then every `git commit` scans the staged changes for secrets.
+repos:
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.21.2
+    hooks:
+      - id: gitleaks

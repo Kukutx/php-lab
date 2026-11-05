@@ -1,0 +1,13 @@
+name: pdo-crud
+type: php
+docroot: public
+php_version: "8.3"
+webserver_type: nginx-fpm
+database:
+  type: mariadb
+  version: "10.11"
+# DDEV's default local-only credentials (db/db/db) - not real secrets.
+web_environment:
+  - DB_DSN=mysql:host=db;dbname=db;charset=utf8mb4
+  - DB_USER=db
+  - DB_PASSWORD=db

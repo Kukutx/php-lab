@@ -1,0 +1,10 @@
+name: laravel
+type: laravel
+docroot: public
+php_version: "8.3"
+webserver_type: nginx-fpm
+database:
+  type: mariadb
+  version: "10.11"
+# For the "laravel" project type DDEV writes the DB_* settings into .env
+# on `ddev start`, so no credentials are committed.

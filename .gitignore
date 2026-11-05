@@ -1,0 +1,33 @@
+# Shared ignores for every exercise in the monorepo.
+# Each project folder may add its own .gitignore.
+
+# Dependencies
+vendor/
+node_modules/
+
+# Secrets - never commit
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Local databases and dumps
+*.sqlite
+*.sqlite3
+*.sql
+*.sql.gz
+
+# Tooling caches
+.phpunit.cache/
+.phpunit.result.cache
+.phpcs-cache
+.phpstan-cache/
+
+# Editors / OS
+.idea/
+.vscode/*
+!.vscode/launch.json
+!.vscode/extensions.json
+.DS_Store
+Thumbs.db

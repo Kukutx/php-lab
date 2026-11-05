@@ -1,0 +1,9 @@
+{
+    "recommendations": [
+        "bmewburn.vscode-intelephense-client",
+        "xdebug.php-debug",
+        "shevaua.phpcs",
+        "swordev.phpstan",
+        "laravel.vscode-laravel"
+    ]
+}
