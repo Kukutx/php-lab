@@ -12,13 +12,13 @@ environment, so you can start any of them independently.
 | [`laravel/`](laravel) | Laravel tour: routes, controllers, Eloquent + migrations, form requests / validation, Blade, feature tests | ✅ |
 | [`notes/`](notes) | Interview cheat sheet (Chinese notes + one-line Italian answers) | ✅ |
 | [`drupal10/`](drupal10) | Municipal site: content type, taxonomy, Views, blocks, custom module (routing, controller, services/DI, config form, block plugin), Bootstrap Italia theme ("modello Comuni" home + Avvisi list), config management, 9→10 upgrade guide, WCAG notes | ✅ |
-| `wordpress/` | Child theme, hooks, custom post types, small plugin, Elementor | 🔜 |
+| [`wordpress/`](wordpress) | Child theme (hooks, template hierarchy), plugin with custom post type, taxonomy, secure meta box, shortcode, REST meta and an Elementor widget; Elementor notes | ✅ |
 
 ## Quick start
 
 ```bash
 git clone https://github.com/Kukutx/php-lab.git
-cd php-lab/pdo-crud     # or laravel/, drupal10/
+cd php-lab/pdo-crud     # or laravel/, drupal10/, wordpress/
 ddev start              # one DDEV project per folder
 ddev composer install
 ddev launch

@@ -1,0 +1,17 @@
+{
+    "name": "kukutx/php-lab-wordpress",
+    "description": "Coding-standard tooling for the WordPress exercise (only custom theme and plugin are linted).",
+    "type": "project",
+    "license": "MIT",
+    "require-dev": {
+        "wp-coding-standards/wpcs": "^3.1"
+    },
+    "scripts": {
+        "cs": "phpcs"
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    }
+}

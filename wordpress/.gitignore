@@ -1,0 +1,21 @@
+# Whitelist: ignore the whole WordPress install, keep only our own code.
+/*
+!/.gitignore
+!/.ddev/
+!/README.md
+!/docs/
+!/scripts/
+!/composer.json
+!/composer.lock
+!/phpcs.xml.dist
+!/wp-content/
+/wp-content/*
+!/wp-content/themes/
+!/wp-content/plugins/
+/wp-content/themes/*
+!/wp-content/themes/comune-child/
+/wp-content/plugins/*
+!/wp-content/plugins/comune-avvisi/
+
+# Never commit config with credentials
+wp-config.php

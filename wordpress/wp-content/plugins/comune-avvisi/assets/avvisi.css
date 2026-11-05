@@ -1,0 +1,8 @@
+.comune-avvisi { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); margin: 2rem 0; }
+.comune-avviso { background: #fff; border-radius: 4px; box-shadow: 0 2px 12px rgba(0, 0, 0, .08); padding: 1.5rem; }
+.comune-avviso__meta { display: flex; gap: .75rem; align-items: center; font-size: .8rem; margin: 0 0 .5rem; }
+.comune-avviso__cat { font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
+.comune-avviso__expired { background: #5d7083; border-radius: 3px; color: #fff; padding: 0 .4rem; }
+.comune-avviso__title { font-size: 1.25rem; margin: 0 0 .5rem; }
+.comune-avviso__title a { color: #0066cc; text-decoration: none; }
+.comune-avviso__title a:hover, .comune-avviso__title a:focus { text-decoration: underline; }

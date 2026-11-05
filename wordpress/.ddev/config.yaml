@@ -1,0 +1,10 @@
+name: wordpress
+type: wordpress
+docroot: ""
+php_version: "8.3"
+webserver_type: nginx-fpm
+database:
+  type: mariadb
+  version: "10.11"
+# For the "wordpress" type DDEV generates wp-config-ddev.php with the DB
+# credentials; wp-config.php itself is git-ignored.
