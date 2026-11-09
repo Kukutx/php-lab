@@ -4,6 +4,6 @@
   "description": "Front-end dependencies of the Comune theme. Run `npm ci` in this folder after cloning.",
   "license": "MIT",
   "dependencies": {
-    "bootstrap-italia": "2.13.0"
+    "bootstrap-italia": "2.18.3"
   }
 }
