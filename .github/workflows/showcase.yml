@@ -1,0 +1,74 @@
+name: Showcase (Cloudflare Pages)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'showcase/**'
+      - 'notes/**'
+      - '.github/workflows/showcase.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: showcase-deploy
+  cancel-in-progress: true
+
+env:
+  # The personal "andrealiu" Cloudflare account. Never change this to another account.
+  CLOUDFLARE_ACCOUNT_ID: 055f054087ae67958826268f493946d5
+  PAGES_PROJECT: php-lab
+
+jobs:
+  deploy:
+    name: Build and deploy
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    defaults:
+      run:
+        working-directory: showcase
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci --no-audit --no-fund
+      - run: npm run build
+
+      - name: Check that the Cloudflare token is set
+        id: check
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          if [ -z "$CLOUDFLARE_API_TOKEN" ]; then
+            echo "::warning::Secret CLOUDFLARE_API_TOKEN is not set, skipping deploy. Run showcase/setup-cloudflare.ps1 once."
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create the Pages project if it does not exist
+        if: steps.check.outputs.ready == 'true'
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          npx --yes wrangler@4 pages project list > projects.txt
+          if grep -qw "$PAGES_PROJECT" projects.txt; then
+            echo "Project $PAGES_PROJECT already exists."
+          else
+            npx --yes wrangler@4 pages project create "$PAGES_PROJECT" --production-branch main
+          fi
+
+      - name: Deploy
+        id: deploy
+        if: steps.check.outputs.ready == 'true'
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ env.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: showcase
+          command: pages deploy dist --project-name=${{ env.PAGES_PROJECT }} --branch=main --commit-dirty=true
+
+      - name: Summary
+        if: steps.check.outputs.ready == 'true'
+        run: echo "Deployed to ${{ steps.deploy.outputs.deployment-url }}" >> "$GITHUB_STEP_SUMMARY"
