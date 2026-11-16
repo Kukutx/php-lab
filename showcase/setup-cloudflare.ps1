@@ -62,7 +62,9 @@ if ($LASTEXITCODE -ne 0) { throw 'gh workflow run failed.' }
 $runId = $null
 for ($i = 0; $i -lt 20 -and -not $runId; $i++) {
     Start-Sleep -Seconds 3
-    $runId = gh run list --repo $Repo --workflow showcase.yml --event workflow_dispatch --limit 1 --json databaseId,status --jq '.[] | select(.status != "completed") | .databaseId'
+    # Parse JSON in PowerShell: Windows PowerShell 5.1 strips the inner quotes of a --jq filter.
+    $run = gh run list --repo $Repo --workflow showcase.yml --event workflow_dispatch --limit 1 --json databaseId,status | ConvertFrom-Json
+    if ($run -and $run[0].status -ne 'completed') { $runId = $run[0].databaseId }
 }
 if (-not $runId) { throw "Could not find the new run. Check https://github.com/$Repo/actions" }
 gh run watch $runId --repo $Repo --exit-status
