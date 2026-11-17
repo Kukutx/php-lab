@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="it">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>php-lab · PHP portfolio</title>
-  <meta name="description" content="Four small PHP projects: plain PHP 8 with PDO, Laravel, Drupal 10 with Bootstrap Italia, and WordPress.">
+  <title>php-lab · Portfolio PHP</title>
+  <meta name="description" content="Quattro piccoli progetti PHP: PHP 8 puro con PDO, Laravel, Drupal 10 con Bootstrap Italia e WordPress.">
   <link rel="stylesheet" href="/style.css">
 </head>
 <body>
@@ -16,7 +16,7 @@
       <a href="#laravel">Laravel</a>
       <a href="#drupal10">Drupal 10</a>
       <a href="#wordpress">WordPress</a>
-      <a href="/notes/interview-cheatsheet/">Cheat sheet</a>
+      <a href="/notes/interview-cheatsheet/">Appunti</a>
       <a href="https://github.com/Kukutx/php-lab">GitHub</a>
     </nav>
   </div>
@@ -24,157 +24,157 @@
 
 <main class="wrap">
   <section class="hero">
-    <h1>php-lab: four PHP projects, from plain PDO to Drupal</h1>
-    <p>A monorepo of small, focused exercises built around one theme: a fictional town hall
-      (<em>Comune di Esempio</em>) and its public notices (<em>avvisi</em>). Each project shows
-      the same ideas at a different level of abstraction, with tests, static analysis and CI.</p>
+    <h1>php-lab: quattro progetti PHP, dal PDO puro a Drupal</h1>
+    <p>Un monorepo di esercizi piccoli e mirati, tutti sullo stesso tema: un comune di fantasia
+      (<em>Comune di Esempio</em>) e i suoi <em>avvisi</em> al pubblico. Ogni progetto mostra
+      le stesse idee a un diverso livello di astrazione, con test, analisi statica e CI.</p>
     <div class="btns">
-      <a class="btn" href="https://github.com/Kukutx/php-lab">Source on GitHub</a>
-      <a class="btn ghost" href="https://codespaces.new/Kukutx/php-lab?quickstart=1">Run it live in Codespaces</a>
+      <a class="btn" href="https://github.com/Kukutx/php-lab">Codice su GitHub</a>
+      <a class="btn ghost" href="https://codespaces.new/Kukutx/php-lab?quickstart=1">Provalo in Codespaces</a>
     </div>
   </section>
 
   <div class="grid">
-    <a class="card" href="#pdo-crud"><h3>pdo-crud</h3><p>Plain PHP 8 contacts CRUD: PDO, PSR-4, enums, CSRF/XSS protection, PHPUnit.</p></a>
-    <a class="card" href="#laravel"><h3>laravel</h3><p>Notices board: routes, Eloquent, Form Requests, Blade components, feature tests.</p></a>
-    <a class="card" href="#drupal10"><h3>drupal10</h3><p>Municipal site with Bootstrap Italia: content types, Views, custom module and theme.</p></a>
-    <a class="card" href="#wordpress"><h3>wordpress</h3><p>Child theme and plugin: custom post type, taxonomy, meta box, REST field, Elementor widget.</p></a>
+    <a class="card" href="#pdo-crud"><h3>pdo-crud</h3><p>CRUD di contatti in PHP 8 puro: PDO, PSR-4, enum, protezione CSRF/XSS, PHPUnit.</p></a>
+    <a class="card" href="#laravel"><h3>laravel</h3><p>Bacheca degli avvisi: route, Eloquent, Form Request, componenti Blade, feature test.</p></a>
+    <a class="card" href="#drupal10"><h3>drupal10</h3><p>Sito comunale con Bootstrap Italia: tipi di contenuto, Views, modulo e tema custom.</p></a>
+    <a class="card" href="#wordpress"><h3>wordpress</h3><p>Tema child e plugin: custom post type, tassonomia, meta box, campo REST, widget Elementor.</p></a>
   </div>
 
   <section class="app" id="pdo-crud">
     <h2>pdo-crud</h2>
-    <p class="tagline">A contacts manager written without a framework, to show the building blocks that frameworks are made of.</p>
+    <p class="tagline">Una rubrica di contatti scritta senza framework, per mostrare i mattoni con cui i framework sono costruiti.</p>
     <ul class="chips"><li>PHP 8.2+</li><li>PDO</li><li>Composer PSR-4</li><li>PHPUnit 11</li><li>PHPStan level 8</li><li>PSR-12</li><li>Bootstrap 5</li></ul>
     <div class="cols">
       <div>
-        <h4>Highlights</h4>
+        <h4>Punti principali</h4>
         <ul>
-          <li>Front controller in <code>public/index.php</code>: the only file the web server exposes.</li>
-          <li><code>readonly</code> value object, backed <code>enum</code> with <code>match</code>, constructor promotion, named arguments.</li>
-          <li>Repository interface with a PDO implementation using prepared statements only.</li>
-          <li>CSRF token checked with <code>hash_equals</code>; every value escaped on output.</li>
-          <li>Domain exceptions mapped to 404 / 422 responses.</li>
+          <li>Front controller in <code>public/index.php</code>: l'unico file esposto dal web server.</li>
+          <li>Value object <code>readonly</code>, <code>enum</code> tipizzata con <code>match</code>, constructor promotion, named arguments.</li>
+          <li>Interfaccia Repository con un'implementazione PDO che usa solo prepared statement.</li>
+          <li>Token CSRF verificato con <code>hash_equals</code>; ogni valore è sottoposto a escape in output.</li>
+          <li>Eccezioni di dominio tradotte in risposte 404 / 422.</li>
         </ul>
       </div>
       <div>
-        <h4>Tested with</h4>
+        <h4>Test e controlli</h4>
         <ul>
-          <li>Unit and integration tests (SQLite in memory).</li>
-          <li>PHPStan level 8 and PHP_CodeSniffer in GitHub Actions.</li>
+          <li>Test unitari e di integrazione (SQLite in memoria).</li>
+          <li>PHPStan livello 8 e PHP_CodeSniffer in GitHub Actions.</li>
         </ul>
-        <p><a href="https://github.com/Kukutx/php-lab/tree/main/pdo-crud">Read the code →</a></p>
+        <p><a href="https://github.com/Kukutx/php-lab/tree/main/pdo-crud">Leggi il codice →</a></p>
       </div>
     </div>
     <div class="shots">
-      <figure><a href="/img/pdo-crud-list.webp"><img src="/img/pdo-crud-list.webp" alt="Contacts list with search and category filter" loading="lazy" width="1280" height="800"></a><figcaption>Contacts list</figcaption></figure>
-      <figure><a href="/img/pdo-crud-validation.webp"><img src="/img/pdo-crud-validation.webp" alt="Form showing validation errors" loading="lazy" width="1280" height="800"></a><figcaption>Server-side validation</figcaption></figure>
+      <figure><a href="/img/pdo-crud-list.webp"><img src="/img/pdo-crud-list.webp" alt="Elenco dei contatti con ricerca e filtro per categoria" loading="lazy" width="1280" height="800"></a><figcaption>Elenco dei contatti</figcaption></figure>
+      <figure><a href="/img/pdo-crud-validation.webp"><img src="/img/pdo-crud-validation.webp" alt="Form con gli errori di validazione" loading="lazy" width="1280" height="800"></a><figcaption>Validazione lato server</figcaption></figure>
     </div>
   </section>
 
   <section class="app" id="laravel">
     <h2>laravel</h2>
-    <p class="tagline">A quick but complete tour of Laravel: a notices board for the town hall with CRUD, filters, validation and tests.</p>
+    <p class="tagline">Un giro rapido ma completo di Laravel: una bacheca degli avvisi del comune con CRUD, filtri, validazione e test.</p>
     <ul class="chips"><li>Laravel 13</li><li>PHP 8.3</li><li>Eloquent</li><li>Form Requests</li><li>Blade components</li><li>PHPUnit</li></ul>
     <div class="cols">
       <div>
-        <h4>Highlights</h4>
+        <h4>Punti principali</h4>
         <ul>
-          <li><code>Route::resource</code> with a 7-action controller and route model binding by slug.</li>
-          <li>Form Request validation with <code>Rule::enum</code>; one enum shared by model, validation and views.</li>
-          <li>Model casts, scopes and model events; migrations, factories and seeders.</li>
-          <li>Blade layout and reusable components, Bootstrap 5 without a Node build.</li>
+          <li><code>Route::resource</code> con un controller a 7 azioni e route model binding tramite slug.</li>
+          <li>Validazione con Form Request e <code>Rule::enum</code>; una sola enum condivisa da modello, validazione e viste.</li>
+          <li>Cast, scope ed eventi del modello; migration, factory e seeder.</li>
+          <li>Layout Blade e componenti riutilizzabili, Bootstrap 5 senza build Node.</li>
         </ul>
       </div>
       <div>
-        <h4>Tested with</h4>
+        <h4>Test e controlli</h4>
         <ul>
-          <li>Feature tests with <code>RefreshDatabase</code>.</li>
-          <li>Compare with the plain PHP version to see what the framework does for you.</li>
+          <li>Feature test con <code>RefreshDatabase</code>.</li>
+          <li>Confrontalo con la versione in PHP puro per vedere che cosa fa il framework al posto tuo.</li>
         </ul>
-        <p><a href="https://github.com/Kukutx/php-lab/tree/main/laravel">Read the code →</a></p>
+        <p><a href="https://github.com/Kukutx/php-lab/tree/main/laravel">Leggi il codice →</a></p>
       </div>
     </div>
     <div class="shots">
-      <figure><a href="/img/laravel-list.webp"><img src="/img/laravel-list.webp" alt="Notices list with category filter" loading="lazy" width="1280" height="800"></a><figcaption>Notices list</figcaption></figure>
-      <figure><a href="/img/laravel-show.webp"><img src="/img/laravel-show.webp" alt="Single notice page" loading="lazy" width="1280" height="800"></a><figcaption>Notice detail</figcaption></figure>
-      <figure><a href="/img/laravel-validation.webp"><img src="/img/laravel-validation.webp" alt="Form with validation messages" loading="lazy" width="1280" height="800"></a><figcaption>Form Request validation</figcaption></figure>
+      <figure><a href="/img/laravel-list.webp"><img src="/img/laravel-list.webp" alt="Elenco degli avvisi con filtro per categoria" loading="lazy" width="1280" height="800"></a><figcaption>Elenco degli avvisi</figcaption></figure>
+      <figure><a href="/img/laravel-show.webp"><img src="/img/laravel-show.webp" alt="Pagina di un singolo avviso" loading="lazy" width="1280" height="800"></a><figcaption>Dettaglio dell'avviso</figcaption></figure>
+      <figure><a href="/img/laravel-validation.webp"><img src="/img/laravel-validation.webp" alt="Form con i messaggi di validazione" loading="lazy" width="1280" height="800"></a><figcaption>Validazione con Form Request</figcaption></figure>
     </div>
   </section>
 
   <section class="app" id="drupal10">
     <h2>drupal10</h2>
-    <p class="tagline">A municipal website built like the Designers Italia "modello Comuni", with a custom module and a Bootstrap Italia theme.</p>
-    <ul class="chips"><li>Drupal 10.6</li><li>PHP 8.3</li><li>Drush 13</li><li>Bootstrap Italia 2.13</li><li>Twig</li><li>Drupal coder</li></ul>
+    <p class="tagline">Un sito comunale costruito sul "modello Comuni" di Designers Italia, con un modulo custom e un tema Bootstrap Italia.</p>
+    <ul class="chips"><li>Drupal 10.6</li><li>PHP 8.3</li><li>Drush 13</li><li>Bootstrap Italia 2.18</li><li>Twig</li><li>Drupal coder</li></ul>
     <div class="cols">
       <div>
-        <h4>Highlights</h4>
+        <h4>Punti principali</h4>
         <ul>
-          <li>Content type <code>avviso</code> with a taxonomy reference (road works, events, services, emergencies).</li>
-          <li>View <code>/avvisi</code> with cards, exposed category filter and pager.</li>
-          <li>Custom module: routing, controller, services with dependency injection, config form, block plugin.</li>
-          <li>Custom Twig theme on Bootstrap Italia (installed with npm, no CDN); cache tags on render arrays.</li>
-          <li>Configuration management in git, plus notes on the 9 → 10 upgrade and WCAG 2.1 AA.</li>
+          <li>Tipo di contenuto <code>avviso</code> con riferimento a una tassonomia (viabilità, eventi, servizi, emergenze).</li>
+          <li>View <code>/avvisi</code> con card, filtro esposto per categoria e paginazione.</li>
+          <li>Modulo custom: routing, controller, servizi con dependency injection, form di configurazione, plugin di blocco.</li>
+          <li>Tema Twig custom su Bootstrap Italia (installato con npm, senza CDN); cache tag sui render array.</li>
+          <li>Configurazione gestita in git, con appunti sull'aggiornamento 9 → 10 e su WCAG 2.1 AA.</li>
         </ul>
       </div>
       <div>
-        <h4>More docs</h4>
+        <h4>Altra documentazione</h4>
         <ul>
-          <li><a href="https://github.com/Kukutx/php-lab/blob/main/drupal10/docs/upgrade-9-to-10.md">Drupal 9 → 10 upgrade process</a></li>
-          <li><a href="https://github.com/Kukutx/php-lab/blob/main/drupal10/docs/accessibility.md">Accessibility basics (WCAG 2.1 AA)</a></li>
+          <li><a href="https://github.com/Kukutx/php-lab/blob/main/drupal10/docs/upgrade-9-to-10.md">Procedura di aggiornamento da Drupal 9 a 10</a></li>
+          <li><a href="https://github.com/Kukutx/php-lab/blob/main/drupal10/docs/accessibility.md">Basi di accessibilità (WCAG 2.1 AA)</a></li>
         </ul>
-        <p><a href="https://github.com/Kukutx/php-lab/tree/main/drupal10">Read the code →</a></p>
+        <p><a href="https://github.com/Kukutx/php-lab/tree/main/drupal10">Leggi il codice →</a></p>
       </div>
     </div>
     <div class="shots">
-      <figure><a href="/img/drupal10-home.webp"><img src="/img/drupal10-home.webp" alt="Town hall home page with highlighted notices" loading="lazy" width="1280" height="2091"></a><figcaption>Home page</figcaption></figure>
-      <figure><a href="/img/drupal10-avvisi.webp"><img src="/img/drupal10-avvisi.webp" alt="Avvisi list built with Views" loading="lazy" width="1280" height="1391"></a><figcaption>Avvisi (View with filter)</figcaption></figure>
-      <figure><a href="/img/drupal10-avviso.webp"><img src="/img/drupal10-avviso.webp" alt="Single notice page" loading="lazy" width="1280" height="931"></a><figcaption>Single notice</figcaption></figure>
-      <figure><a href="/img/drupal10-riepilogo.webp"><img src="/img/drupal10-riepilogo.webp" alt="Summary page from the custom module" loading="lazy" width="1280" height="1097"></a><figcaption>Custom module page</figcaption></figure>
-      <figure><a href="/img/drupal10-settings.webp"><img src="/img/drupal10-settings.webp" alt="Module configuration form" loading="lazy" width="1280" height="900"></a><figcaption>Config form</figcaption></figure>
+      <figure><a href="/img/drupal10-home.webp"><img src="/img/drupal10-home.webp" alt="Home page del comune con gli avvisi in evidenza" loading="lazy" width="1280" height="2091"></a><figcaption>Home page</figcaption></figure>
+      <figure><a href="/img/drupal10-avvisi.webp"><img src="/img/drupal10-avvisi.webp" alt="Elenco degli avvisi realizzato con Views" loading="lazy" width="1280" height="1391"></a><figcaption>Avvisi (View con filtro)</figcaption></figure>
+      <figure><a href="/img/drupal10-avviso.webp"><img src="/img/drupal10-avviso.webp" alt="Pagina di un singolo avviso" loading="lazy" width="1280" height="931"></a><figcaption>Singolo avviso</figcaption></figure>
+      <figure><a href="/img/drupal10-riepilogo.webp"><img src="/img/drupal10-riepilogo.webp" alt="Pagina di riepilogo del modulo custom" loading="lazy" width="1280" height="1097"></a><figcaption>Pagina del modulo custom</figcaption></figure>
+      <figure><a href="/img/drupal10-settings.webp"><img src="/img/drupal10-settings.webp" alt="Form di configurazione del modulo" loading="lazy" width="1280" height="900"></a><figcaption>Form di configurazione</figcaption></figure>
     </div>
   </section>
 
   <section class="app" id="wordpress">
     <h2>wordpress</h2>
-    <p class="tagline">Extending WordPress without touching core: a child theme and a notices plugin for the same town hall.</p>
-    <ul class="chips"><li>WordPress</li><li>PHP 8.3</li><li>Child theme</li><li>Custom post type</li><li>REST API</li><li>Elementor</li></ul>
+    <p class="tagline">Estendere WordPress senza toccare il core: un tema child e un plugin di avvisi per lo stesso comune.</p>
+    <ul class="chips"><li>WordPress</li><li>PHP 8.3</li><li>Tema child</li><li>Custom post type</li><li>REST API</li><li>Elementor</li></ul>
     <div class="cols">
       <div>
-        <h4>Highlights</h4>
+        <h4>Punti principali</h4>
         <ul>
-          <li>Child theme of Twenty Twenty-One: actions, filters and the template hierarchy.</li>
-          <li>Plugin <code>comune-avvisi</code>: custom post type, taxonomy and a meta box.</li>
-          <li>Secure form handling: nonces, capability checks, sanitising and escaping.</li>
-          <li>Shortcode, REST meta field and a custom Elementor widget.</li>
+          <li>Tema child di Twenty Twenty-One: action, filter e gerarchia dei template.</li>
+          <li>Plugin <code>comune-avvisi</code>: custom post type, tassonomia e un meta box.</li>
+          <li>Gestione sicura dei form: nonce, controllo dei permessi, sanitizzazione ed escape.</li>
+          <li>Shortcode, campo meta via REST e un widget Elementor custom.</li>
         </ul>
       </div>
       <div>
-        <h4>More docs</h4>
+        <h4>Altra documentazione</h4>
         <ul>
-          <li><a href="https://github.com/Kukutx/php-lab/blob/main/wordpress/docs/elementor.md">Elementor notes</a></li>
+          <li><a href="https://github.com/Kukutx/php-lab/blob/main/wordpress/docs/elementor.md">Appunti su Elementor</a></li>
         </ul>
-        <p><a href="https://github.com/Kukutx/php-lab/tree/main/wordpress">Read the code →</a></p>
+        <p><a href="https://github.com/Kukutx/php-lab/tree/main/wordpress">Leggi il codice →</a></p>
       </div>
     </div>
     <div class="shots">
-      <figure><a href="/img/wordpress-home.webp"><img src="/img/wordpress-home.webp" alt="WordPress home page with latest notices" loading="lazy" width="1280" height="1627"></a><figcaption>Home page</figcaption></figure>
-      <figure><a href="/img/wordpress-archive.webp"><img src="/img/wordpress-archive.webp" alt="Notices archive" loading="lazy" width="1280" height="1645"></a><figcaption>Notices archive</figcaption></figure>
-      <figure><a href="/img/wordpress-single.webp"><img src="/img/wordpress-single.webp" alt="Single notice" loading="lazy" width="1280" height="1560"></a><figcaption>Single notice</figcaption></figure>
-      <figure><a href="/img/wordpress-admin.webp"><img src="/img/wordpress-admin.webp" alt="WordPress admin list of notices" loading="lazy" width="1280" height="900"></a><figcaption>Admin screen</figcaption></figure>
+      <figure><a href="/img/wordpress-home.webp"><img src="/img/wordpress-home.webp" alt="Home page WordPress con gli ultimi avvisi" loading="lazy" width="1280" height="1627"></a><figcaption>Home page</figcaption></figure>
+      <figure><a href="/img/wordpress-archive.webp"><img src="/img/wordpress-archive.webp" alt="Archivio degli avvisi" loading="lazy" width="1280" height="1645"></a><figcaption>Archivio degli avvisi</figcaption></figure>
+      <figure><a href="/img/wordpress-single.webp"><img src="/img/wordpress-single.webp" alt="Singolo avviso" loading="lazy" width="1280" height="1560"></a><figcaption>Singolo avviso</figcaption></figure>
+      <figure><a href="/img/wordpress-admin.webp"><img src="/img/wordpress-admin.webp" alt="Elenco degli avvisi nell'amministrazione di WordPress" loading="lazy" width="1280" height="900"></a><figcaption>Schermata di amministrazione</figcaption></figure>
     </div>
   </section>
 
   <div class="note">
-    <strong>Why screenshots and not live demos?</strong> This page is a static site on Cloudflare Pages, which does not run PHP.
-    To click through the real apps, open the repository in
-    <a href="https://codespaces.new/Kukutx/php-lab?quickstart=1">GitHub Codespaces</a>: a setup script builds all four sites
-    on SQLite with demo content. Notes: <a href="/notes/interview-cheatsheet/">PHP interview cheat sheet</a> ·
-    <a href="/notes/how-i-built-it/">How it was built and tested</a> (Chinese with Italian answers).
+    <strong>Perché screenshot e non demo dal vivo?</strong> Questa pagina è un sito statico su Cloudflare Pages, che non esegue PHP.
+    Per provare le applicazioni vere, apri il repository in
+    <a href="https://codespaces.new/Kukutx/php-lab?quickstart=1">GitHub Codespaces</a>: uno script di setup costruisce i quattro siti
+    su SQLite con contenuti di esempio. Appunti: <a href="/notes/interview-cheatsheet/">appunti di PHP</a> ·
+    <a href="/notes/how-i-built-it/">come è stato costruito e testato</a> (in cinese, con risposte in italiano).
   </div>
 </main>
 
 <footer class="site">
-  <div class="wrap">MIT licensed · <a href="https://github.com/Kukutx/php-lab">github.com/Kukutx/php-lab</a></div>
+  <div class="wrap">Licenza MIT · <a href="https://github.com/Kukutx/php-lab">github.com/Kukutx/php-lab</a></div>
 </footer>
 </body>
 </html>
