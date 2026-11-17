@@ -16,6 +16,7 @@
       <a href="#laravel">Laravel</a>
       <a href="#drupal10">Drupal 10</a>
       <a href="#wordpress">WordPress</a>
+      <a href="#demo">Demo</a>
       <a href="/notes/interview-cheatsheet/">Appunti</a>
       <a href="https://github.com/Kukutx/php-lab">GitHub</a>
     </nav>
@@ -121,6 +122,7 @@
         <ul>
           <li><a href="https://github.com/Kukutx/php-lab/blob/main/drupal10/docs/upgrade-9-to-10.md">Procedura di aggiornamento da Drupal 9 a 10</a></li>
           <li><a href="https://github.com/Kukutx/php-lab/blob/main/drupal10/docs/accessibility.md">Basi di accessibilità (WCAG 2.1 AA)</a></li>
+          <li><a href="#demo">Accesso all'amministrazione nella demo</a></li>
         </ul>
         <p><a href="https://github.com/Kukutx/php-lab/tree/main/drupal10">Leggi il codice →</a></p>
       </div>
@@ -152,6 +154,7 @@
         <h4>Altra documentazione</h4>
         <ul>
           <li><a href="https://github.com/Kukutx/php-lab/blob/main/wordpress/docs/elementor.md">Appunti su Elementor</a></li>
+          <li><a href="#demo">Accesso a <code>/wp-admin</code> nella demo</a></li>
         </ul>
         <p><a href="https://github.com/Kukutx/php-lab/tree/main/wordpress">Leggi il codice →</a></p>
       </div>
@@ -164,17 +167,96 @@
     </div>
   </section>
 
-  <div class="note">
-    <strong>Perché screenshot e non demo dal vivo?</strong> Questa pagina è un sito statico su Cloudflare Pages, che non esegue PHP.
-    Per provare le applicazioni vere, apri il repository in
-    <a href="https://codespaces.new/Kukutx/php-lab?quickstart=1">GitHub Codespaces</a>: uno script di setup costruisce i quattro siti
-    su SQLite con contenuti di esempio. Appunti: <a href="/notes/interview-cheatsheet/">appunti di PHP</a> ·
-    <a href="/notes/how-i-built-it/">come è stato costruito e testato</a> (in cinese, con risposte in italiano).
-  </div>
+  <section class="app" id="demo">
+    <h2>Demo dal vivo</h2>
+    <p class="tagline">Questa pagina è un sito statico su Cloudflare Pages, che non esegue PHP: per questo mostra screenshot.
+      Le applicazioni vere girano in <a href="https://codespaces.new/Kukutx/php-lab?quickstart=1">GitHub Codespaces</a>,
+      dove uno script di setup costruisce i quattro siti su SQLite con contenuti di esempio.</p>
+    <div class="table-wrap">
+      <table class="demo">
+        <thead>
+          <tr><th>Sito</th><th>Porta</th><th>Pagina pubblica</th><th>Amministrazione</th><th>Accesso</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>pdo-crud</td><td>8001</td><td><a data-demo="8001/contacts"><code>/contacts</code></a></td><td>–</td><td>–</td></tr>
+          <tr><td>laravel</td><td>8002</td><td><a data-demo="8002/notices"><code>/notices</code></a></td><td>–</td><td>–</td></tr>
+          <tr><td>drupal10</td><td>8003</td><td><a data-demo="8003/"><code>/</code></a></td><td><a data-demo="8003/user/login"><code>/user/login</code></a></td><td><code>admin</code> / <code>admin</code></td></tr>
+          <tr><td>wordpress</td><td>8004</td><td><a data-demo="8004/"><code>/</code></a></td><td><a data-demo="8004/wp-admin/"><code>/wp-admin</code></a></td><td><code>admin</code> / <code>admin</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>In Codespaces: scheda <strong>Ports</strong>, icona del globo accanto alla porta, poi si aggiunge il percorso all'indirizzo.
+      Per avere qui i link diretti, incolla l'indirizzo di una delle porte del tuo codespace:</p>
+    <form class="demo-form" id="demo-form">
+      <label for="demo-url">Indirizzo del codespace</label>
+      <input id="demo-url" type="text" inputmode="url" autocomplete="off" spellcheck="false" placeholder="https://nome-del-codespace-8004.app.github.dev">
+      <button class="btn" type="submit">Crea i link</button>
+    </form>
+    <p class="demo-status" id="demo-status" role="status"></p>
+    <p class="tagline">Le credenziali <code>admin</code> / <code>admin</code> valgono solo per questa demo. Appunti:
+      <a href="/notes/interview-cheatsheet/">appunti di PHP</a> ·
+      <a href="/notes/how-i-built-it/">come è stato costruito e testato</a> (in cinese, con risposte in italiano).</p>
+  </section>
 </main>
 
 <footer class="site">
   <div class="wrap">Licenza MIT · <a href="https://github.com/Kukutx/php-lab">github.com/Kukutx/php-lab</a></div>
 </footer>
+<script>
+// Turns the paths in the "Demo dal vivo" table into links to a running codespace.
+// The codespace name comes from ?cs=<name>, from the form, or from the last visit.
+(function () {
+  var KEY = 'php-lab-codespace';
+  var form = document.getElementById('demo-form');
+  var input = document.getElementById('demo-url');
+  var status = document.getElementById('demo-status');
+
+  function parse(value) {
+    value = (value || '').trim().toLowerCase();
+    var m = /^(?:https?:\/\/)?([a-z0-9-]+?)(?:-\d{2,5})?\.app\.github\.dev(?:[\/?#]|$)/.exec(value);
+    if (m) return m[1];
+    return /^[a-z0-9][a-z0-9-]{2,}$/.test(value) ? value : '';
+  }
+  function load() { try { return parse(localStorage.getItem(KEY)); } catch (e) { return ''; } }
+  function save(name) {
+    try { name ? localStorage.setItem(KEY, name) : localStorage.removeItem(KEY); } catch (e) {}
+  }
+  function apply(name) {
+    document.querySelectorAll('a[data-demo]').forEach(function (a) {
+      if (!name) { a.removeAttribute('href'); return; }
+      var parts = a.getAttribute('data-demo').split('/');
+      var port = parts.shift();
+      a.href = 'https://' + name + '-' + port + '.app.github.dev/' + parts.join('/');
+      a.target = '_blank';
+      a.rel = 'noopener';
+    });
+    status.textContent = '';
+    if (!name) return;
+    status.append('Link attivi per il codespace ', Object.assign(document.createElement('code'), { textContent: name }), '. ');
+    var reset = document.createElement('button');
+    reset.type = 'button';
+    reset.className = 'linklike';
+    reset.textContent = 'Rimuovi';
+    reset.addEventListener('click', function () { save(''); apply(''); });
+    status.append(reset);
+  }
+
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    var name = parse(input.value);
+    if (!name) {
+      status.textContent = 'Indirizzo non riconosciuto. Esempio: https://nome-del-codespace-8004.app.github.dev';
+      return;
+    }
+    save(name);
+    input.value = '';
+    apply(name);
+  });
+
+  var fromUrl = parse(new URLSearchParams(location.search).get('cs'));
+  if (fromUrl) save(fromUrl);
+  apply(fromUrl || load());
+})();
+</script>
 </body>
 </html>

@@ -95,3 +95,20 @@ article.doc table { border-collapse: collapse; width: 100%; display: block; over
 article.doc th, article.doc td { border: 1px solid var(--line); padding: .45rem .6rem; text-align: left; vertical-align: top; }
 article.doc blockquote, article.doc em { color: var(--muted); }
 article.doc hr { display: none; }
+
+/* Demo dal vivo */
+.table-wrap { overflow-x: auto; margin: 0 0 1rem; }
+table.demo { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; }
+table.demo th, table.demo td { text-align: left; padding: .6rem .8rem; border-bottom: 1px solid var(--line); white-space: nowrap; }
+table.demo th { color: var(--muted); font-size: .85rem; font-weight: 600; }
+table.demo tr:last-child td { border-bottom: 0; }
+table.demo a:not([href]) { color: inherit; }
+.demo-form { display: flex; gap: .6rem; flex-wrap: wrap; align-items: center; margin: 0 0 .5rem; }
+.demo-form label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.demo-form input {
+  flex: 1 1 18rem; min-width: 0; padding: .6rem .75rem; font: inherit;
+  color: var(--text); background: var(--surface); border: 1px solid var(--line); border-radius: 8px;
+}
+.demo-form .btn { border: 0; cursor: pointer; font: inherit; font-weight: 600; }
+.demo-status { min-height: 1.5rem; margin: 0 0 1rem; color: var(--muted); }
+button.linklike { background: none; border: 0; padding: 0; font: inherit; color: var(--accent); text-decoration: underline; cursor: pointer; }

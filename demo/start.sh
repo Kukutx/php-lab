@@ -26,3 +26,8 @@ php-lab demo is running:
   wordpress  $(url_for 8004)/          (admin / admin, /wp-admin)
 Logs: /tmp/php-lab/<port>.log
 TXT
+
+# In Codespaces the showcase page can link straight to these sites.
+if [ -n "${CODESPACE_NAME:-}" ]; then
+  echo "All links on one page: https://php-lab-519.pages.dev/?cs=${CODESPACE_NAME}#demo"
+fi
