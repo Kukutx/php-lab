@@ -6,7 +6,8 @@ APIs that were removed. The work is therefore: **find deprecated code → fix
 it → update Composer dependencies → run database updates.**
 
 > This repository is already on Drupal 10.6. The steps below are the checklist
-> I would follow on a real Drupal 9 site (as I did on the Maggioli project).
+> I would follow on a real Drupal 9 site (as I saw on the Maggioli project,
+> where a senior colleague led the upgrade and I took part in it).
 
 ## 0. Prerequisites
 
