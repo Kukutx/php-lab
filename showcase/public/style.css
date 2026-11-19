@@ -47,6 +47,9 @@ header.site .brand { font-weight: 700; color: var(--text); text-decoration: none
 header.site nav { display: flex; gap: 1rem; flex-wrap: wrap; font-size: .95rem; }
 header.site nav a { text-decoration: none; color: var(--muted); }
 header.site nav a:hover { color: var(--accent); }
+header.site .langs { display: inline-flex; gap: .15rem; border: 1px solid var(--line); border-radius: 999px; padding: 0 .2rem; }
+header.site .langs a { padding: 0 .45rem; border-radius: 999px; font-size: .85rem; }
+header.site .langs a[aria-current="page"] { color: var(--text); background: var(--accent-soft); }
 
 .hero { padding: 3.5rem 0 2rem; }
 .hero h1 { font-size: clamp(2rem, 5vw, 3rem); line-height: 1.15; margin: 0 0 .75rem; }

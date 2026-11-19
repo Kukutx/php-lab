@@ -1,12 +1,12 @@
-# Drupal 9 → 10 upgrade: the process
+# Upgrading from Drupal 9 to 10
 
 Drupal 9 reached end of life in November 2023. Major upgrades since Drupal 8
 are *not* migrations: the site is updated in place, as long as no code uses
-APIs that were removed. The work is therefore: **find deprecated code → fix
+APIs that were removed. So the work comes down to: **find deprecated code → fix
 it → update Composer dependencies → run database updates.**
 
 > This repository is already on Drupal 10.6. The steps below are the checklist
-> I would follow on a real Drupal 9 site (as I saw on the Maggioli project,
+> I would follow on a real Drupal 9 site (based on the Maggioli project,
 > where a senior colleague led the upgrade and I took part in it).
 
 ## 0. Prerequisites
@@ -32,7 +32,7 @@ ddev drush upgrade_status:analyze --all        # or Reports → Upgrade status
 
 It reports, per project:
 
-- **Contrib modules/themes**: is there a Drupal 10 compatible release? → update them.
+- **Contrib modules/themes**: is there a Drupal 10-compatible release? → update them.
 - **Custom code**: deprecated API calls (it runs PHPStan + `mglaman/phpstan-drupal`).
 - **Environment**: PHP version, database version, removed core modules in use.
 
@@ -69,7 +69,7 @@ core_version_requirement: ^9.5 || ^10
 
 Rector does not fix everything: also check JavaScript (`jQuery.once` →
 `core/once`), Twig (`spaceless` filter, `|without`), and themes based on
-**Classy/Stable**, which left core → use `stable9`/`starterkit`, or require
+**Classy/Stable**, which were removed from core → use `stable9`/`starterkit`, or require
 the contrib `classy` theme.
 
 ## 3. Removed core modules and themes
@@ -86,7 +86,7 @@ or uninstall it.
    CKEditor 5; the automatic upgrade path converts toolbar buttons and
    allowed HTML, and reports plugins without an equivalent.
 3. Test content with embeds, tables and custom styles.
-4. Uninstall `ckeditor` (v4), then `drush cex`.
+4. Uninstall `ckeditor` (v4), then run `drush cex`.
 
 ## 5. Composer update
 
@@ -110,7 +110,7 @@ ddev drush cr
 ddev drush cex -y      # updated config goes to config/sync → commit
 ```
 
-On staging/production the deploy is then:
+On staging and production, the deployment is then:
 
 ```bash
 composer install --no-dev
@@ -120,10 +120,10 @@ drush updb -y && drush cim -y && drush cr
 ## 7. Test
 
 - Upgrade Status shows no errors; `drush watchdog:show` is clean.
-- Smoke test the main pages, forms, editors, Views, permissions.
+- Smoke-test the main pages, forms, editors, Views and permissions.
 - Check the front-end theme (libraries, Twig deprecations) and accessibility.
 
-## The drush commands to remember
+## Drush commands to remember
 
 | Command | What it does |
 |---|---|
@@ -131,6 +131,6 @@ drush updb -y && drush cim -y && drush cr
 | `drush updb` | Run pending database updates |
 | `drush cex` | Export active config to `config/sync` |
 | `drush cim` | Import config from `config/sync` into the database |
-| `drush cst` | Show differences between DB and `config/sync` |
-| `drush uli` | One-time admin login link |
-| `drush pm:list --status=enabled` | Enabled modules |
+| `drush cst` | Show differences between the database and `config/sync` |
+| `drush uli` | Generate a one-time admin login link |
+| `drush pm:list --status=enabled` | List enabled modules |

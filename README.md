@@ -11,8 +11,8 @@ environment, so you can start any of them independently.
 | [`pdo-crud/`](pdo-crud) | Plain PHP 8 contacts CRUD: PDO prepared statements, Composer + PSR-4, enums, readonly classes, `match`, exceptions, CSRF/XSS protection, PHPUnit | ✅ |
 | [`laravel/`](laravel) | Laravel tour: routes, controllers, Eloquent + migrations, form requests / validation, Blade, feature tests | ✅ |
 | [`showcase/`](showcase) | Static portfolio page (descriptions, screenshots, notes) deployed to Cloudflare Pages | ✅ |
-| [`notes/`](notes) | Interview cheat sheet (Chinese notes + one-line Italian answers) and [how it was built and tested](notes/how-i-built-it.md) (Chinese) | ✅ |
-| [`drupal10/`](drupal10) | Municipal site: content type, taxonomy, Views, blocks, custom module (routing, controller, services/DI, config form, block plugin), Bootstrap Italia theme ("modello Comuni" home + Avvisi list), config management, 9→10 upgrade guide, WCAG notes | ✅ |
+| [`notes/`](notes) | [PHP cheat sheet](notes/en/php-cheatsheet.md) and [how php-lab was built and checked](notes/en/how-i-built-it.md), each in Chinese, English and Italian | ✅ |
+| [`drupal10/`](drupal10) | Municipal site: content type, taxonomy, Views, blocks, custom module (routing, controller, services/DI, config form, block plugin), Bootstrap Italia theme ("modello Comuni" homepage + Avvisi list), config management, 9→10 upgrade guide, WCAG notes | ✅ |
 | [`wordpress/`](wordpress) | Child theme (hooks, template hierarchy), plugin with custom post type, taxonomy, secure meta box, shortcode, REST meta and an Elementor widget; Elementor notes | ✅ |
 
 ## Try it online (GitHub Codespaces)
@@ -31,8 +31,8 @@ environment, so you can start any of them independently.
 | 8003 | drupal10 | `admin` / `admin` |
 | 8004 | wordpress (`/wp-admin`) | `admin` / `admin` |
 
-Servers start again automatically when the codespace resumes
-(`bash demo/start.sh`); rebuild all demo data with `bash demo/setup.sh`.
+The servers restart automatically when the codespace resumes
+(`bash demo/start.sh`); to rebuild all demo data, run `bash demo/setup.sh`.
 The demo uses PHP's built-in web server: fine for development, never for production.
 
 ## Quick start
@@ -50,16 +50,16 @@ Each folder's README also explains how to run it **without** DDEV
 
 ## Repository rules
 
-- **No secrets in git.** `.env` files are ignored everywhere; only
+- **No secrets in Git.** `.env` files are ignored everywhere; only
   `.env.example` is committed. A [gitleaks](https://github.com/gitleaks/gitleaks)
   pre-commit hook scans every commit:
   ```bash
   pip install pre-commit && pre-commit install
   ```
-- Only own code is committed: no `vendor/`, no framework core, no uploaded files,
+- Only my own code is committed: no `vendor/`, no framework core, no uploaded files,
   no database dumps.
-- Code, comments, commits and READMEs are in English.
+- Code, comments, commit messages and READMEs are in English.
 
-## License
+## Licence
 
 [MIT](LICENSE)

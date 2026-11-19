@@ -6,6 +6,9 @@
   <title>php-lab · Portfolio PHP</title>
   <meta name="description" content="Quattro piccoli progetti PHP: PHP 8 puro con PDO, Laravel, Drupal 10 con Bootstrap Italia e WordPress.">
   <link rel="stylesheet" href="/style.css">
+  <link rel="alternate" hreflang="it" href="/">
+  <link rel="alternate" hreflang="en" href="/en/">
+  <link rel="alternate" hreflang="zh" href="/zh/">
 </head>
 <body>
 <header class="site">
@@ -17,16 +20,17 @@
       <a href="#drupal10">Drupal 10</a>
       <a href="#wordpress">WordPress</a>
       <a href="#demo">Demo</a>
-      <a href="/notes/interview-cheatsheet/">Appunti</a>
+      <a href="/notes/php-cheatsheet/">Appunti</a>
       <a href="https://github.com/Kukutx/php-lab">GitHub</a>
+      <span class="langs"><a href="/zh/" lang="zh" hreflang="zh">中文</a><a href="/en/" lang="en" hreflang="en">EN</a><a href="/" aria-current="page">IT</a></span>
     </nav>
   </div>
 </header>
 
 <main class="wrap">
   <section class="hero">
-    <h1>php-lab: quattro progetti PHP, dal PDO puro a Drupal</h1>
-    <p>Un monorepo di esercizi piccoli e mirati, tutti sullo stesso tema: un comune di fantasia
+    <h1>php-lab: quattro progetti PHP, dal PHP puro a Drupal</h1>
+    <p>Un monorepo di esercizi piccoli e mirati; tre su quattro condividono lo stesso tema: un comune di fantasia
       (<em>Comune di Esempio</em>) e i suoi <em>avvisi</em> al pubblico. Ogni progetto mostra
       le stesse idee a un diverso livello di astrazione, con test, analisi statica e CI.</p>
     <div class="btns">
@@ -45,7 +49,7 @@
   <section class="app" id="pdo-crud">
     <h2>pdo-crud</h2>
     <p class="tagline">Una rubrica di contatti scritta senza framework, per mostrare i mattoni con cui i framework sono costruiti.</p>
-    <ul class="chips"><li>PHP 8.2+</li><li>PDO</li><li>Composer PSR-4</li><li>PHPUnit 11</li><li>PHPStan level 8</li><li>PSR-12</li><li>Bootstrap 5</li></ul>
+    <ul class="chips"><li>PHP 8.2+</li><li>PDO</li><li>Composer PSR-4</li><li>PHPUnit 11</li><li>PHPStan livello 8</li><li>PSR-12</li><li>Bootstrap 5</li></ul>
     <div class="cols">
       <div>
         <h4>Punti principali</h4>
@@ -74,7 +78,7 @@
 
   <section class="app" id="laravel">
     <h2>laravel</h2>
-    <p class="tagline">Un giro rapido ma completo di Laravel: una bacheca degli avvisi del comune con CRUD, filtri, validazione e test.</p>
+    <p class="tagline">Una panoramica rapida ma completa di Laravel: una bacheca degli avvisi del comune con CRUD, filtri, validazione e test.</p>
     <ul class="chips"><li>Laravel 13</li><li>PHP 8.3</li><li>Eloquent</li><li>Form Requests</li><li>Blade components</li><li>PHPUnit</li></ul>
     <div class="cols">
       <div>
@@ -90,8 +94,8 @@
         <h4>Test e controlli</h4>
         <ul>
           <li>Feature test con <code>RefreshDatabase</code>.</li>
-          <li>Confrontalo con la versione in PHP puro per vedere che cosa fa il framework al posto tuo.</li>
         </ul>
+        <p>Confrontalo con pdo-crud, scritto in PHP puro, per vedere che cosa fa il framework al posto tuo.</p>
         <p><a href="https://github.com/Kukutx/php-lab/tree/main/laravel">Leggi il codice →</a></p>
       </div>
     </div>
@@ -114,14 +118,14 @@
           <li>View <code>/avvisi</code> con card, filtro esposto per categoria e paginazione.</li>
           <li>Modulo custom: routing, controller, servizi con dependency injection, form di configurazione, plugin di blocco.</li>
           <li>Tema Twig custom su Bootstrap Italia (installato con npm, senza CDN); cache tag sui render array.</li>
-          <li>Configurazione gestita in git, con appunti sull'aggiornamento 9 → 10 e su WCAG 2.1 AA.</li>
+          <li>Configurazione versionata con Git, con appunti sull'aggiornamento 9 → 10 e su WCAG 2.1 AA.</li>
         </ul>
       </div>
       <div>
         <h4>Altra documentazione</h4>
         <ul>
-          <li><a href="https://github.com/Kukutx/php-lab/blob/main/drupal10/docs/upgrade-9-to-10.md">Procedura di aggiornamento da Drupal 9 a 10</a></li>
-          <li><a href="https://github.com/Kukutx/php-lab/blob/main/drupal10/docs/accessibility.md">Basi di accessibilità (WCAG 2.1 AA)</a></li>
+          <li><a href="https://github.com/Kukutx/php-lab/blob/main/drupal10/docs/upgrade-9-to-10.md">Procedura di aggiornamento da Drupal 9 a 10</a> (in inglese)</li>
+          <li><a href="https://github.com/Kukutx/php-lab/blob/main/drupal10/docs/accessibility.md">Basi di accessibilità (WCAG 2.1 AA)</a> (in inglese)</li>
           <li><a href="#demo">Accesso all'amministrazione nella demo</a></li>
         </ul>
         <p><a href="https://github.com/Kukutx/php-lab/tree/main/drupal10">Leggi il codice →</a></p>
@@ -153,7 +157,7 @@
       <div>
         <h4>Altra documentazione</h4>
         <ul>
-          <li><a href="https://github.com/Kukutx/php-lab/blob/main/wordpress/docs/elementor.md">Appunti su Elementor</a></li>
+          <li><a href="https://github.com/Kukutx/php-lab/blob/main/wordpress/docs/elementor.md">Appunti su Elementor</a> (in inglese)</li>
           <li><a href="#demo">Accesso a <code>/wp-admin</code> nella demo</a></li>
         </ul>
         <p><a href="https://github.com/Kukutx/php-lab/tree/main/wordpress">Leggi il codice →</a></p>
@@ -168,14 +172,14 @@
   </section>
 
   <section class="app" id="demo">
-    <h2>Demo dal vivo</h2>
-    <p class="tagline">Questa pagina è un sito statico su Cloudflare Pages, che non esegue PHP: per questo mostra screenshot.
-      Le applicazioni vere girano in <a href="https://codespaces.new/Kukutx/php-lab?quickstart=1">GitHub Codespaces</a>,
-      dove uno script di setup costruisce i quattro siti su SQLite con contenuti di esempio.</p>
+    <h2>Demo live</h2>
+    <p class="tagline">Questa pagina è un sito statico su Cloudflare Pages, che non esegue PHP: per questo mostra solo screenshot.
+      Le applicazioni vere e proprie girano su <a href="https://codespaces.new/Kukutx/php-lab?quickstart=1">GitHub Codespaces</a>,
+      dove uno script di setup installa i quattro siti, con database SQLite e contenuti di esempio.</p>
     <div class="table-wrap">
       <table class="demo">
         <thead>
-          <tr><th>Sito</th><th>Porta</th><th>Pagina pubblica</th><th>Amministrazione</th><th>Accesso</th></tr>
+          <tr><th>Sito</th><th>Porta</th><th>Pagina pubblica</th><th>Amministrazione</th><th>Credenziali</th></tr>
         </thead>
         <tbody>
           <tr><td>pdo-crud</td><td>8001</td><td><a data-demo="8001/contacts"><code>/contacts</code></a></td><td>–</td><td>–</td></tr>
@@ -185,7 +189,7 @@
         </tbody>
       </table>
     </div>
-    <p>In Codespaces: scheda <strong>Ports</strong>, icona del globo accanto alla porta, poi si aggiunge il percorso all'indirizzo.
+    <p>In Codespaces: apri la scheda <strong>Ports</strong>, clicca l'icona del globo accanto alla porta e aggiungi il percorso all'indirizzo.
       Per avere qui i link diretti, incolla l'indirizzo di una delle porte del tuo codespace:</p>
     <form class="demo-form" id="demo-form">
       <label for="demo-url">Indirizzo del codespace</label>
@@ -193,70 +197,15 @@
       <button class="btn" type="submit">Crea i link</button>
     </form>
     <p class="demo-status" id="demo-status" role="status"></p>
-    <p class="tagline">Le credenziali <code>admin</code> / <code>admin</code> valgono solo per questa demo. Appunti:
-      <a href="/notes/interview-cheatsheet/">appunti di PHP</a> ·
-      <a href="/notes/how-i-built-it/">come è stato costruito e testato</a> (in cinese, con risposte in italiano).</p>
+    <p class="tagline">Le credenziali <code>admin</code> / <code>admin</code> valgono solo per questa demo. Per approfondire:
+      <a href="/notes/php-cheatsheet/">appunti di PHP</a> ·
+      <a href="/notes/how-i-built-it/">come è stato costruito e verificato php-lab</a>.</p>
   </section>
 </main>
 
 <footer class="site">
   <div class="wrap">Licenza MIT · <a href="https://github.com/Kukutx/php-lab">github.com/Kukutx/php-lab</a></div>
 </footer>
-<script>
-// Turns the paths in the "Demo dal vivo" table into links to a running codespace.
-// The codespace name comes from ?cs=<name>, from the form, or from the last visit.
-(function () {
-  var KEY = 'php-lab-codespace';
-  var form = document.getElementById('demo-form');
-  var input = document.getElementById('demo-url');
-  var status = document.getElementById('demo-status');
-
-  function parse(value) {
-    value = (value || '').trim().toLowerCase();
-    var m = /^(?:https?:\/\/)?([a-z0-9-]+?)(?:-\d{2,5})?\.app\.github\.dev(?:[\/?#]|$)/.exec(value);
-    if (m) return m[1];
-    return /^[a-z0-9][a-z0-9-]{2,}$/.test(value) ? value : '';
-  }
-  function load() { try { return parse(localStorage.getItem(KEY)); } catch (e) { return ''; } }
-  function save(name) {
-    try { name ? localStorage.setItem(KEY, name) : localStorage.removeItem(KEY); } catch (e) {}
-  }
-  function apply(name) {
-    document.querySelectorAll('a[data-demo]').forEach(function (a) {
-      if (!name) { a.removeAttribute('href'); return; }
-      var parts = a.getAttribute('data-demo').split('/');
-      var port = parts.shift();
-      a.href = 'https://' + name + '-' + port + '.app.github.dev/' + parts.join('/');
-      a.target = '_blank';
-      a.rel = 'noopener';
-    });
-    status.textContent = '';
-    if (!name) return;
-    status.append('Link attivi per il codespace ', Object.assign(document.createElement('code'), { textContent: name }), '. ');
-    var reset = document.createElement('button');
-    reset.type = 'button';
-    reset.className = 'linklike';
-    reset.textContent = 'Rimuovi';
-    reset.addEventListener('click', function () { save(''); apply(''); });
-    status.append(reset);
-  }
-
-  form.addEventListener('submit', function (event) {
-    event.preventDefault();
-    var name = parse(input.value);
-    if (!name) {
-      status.textContent = 'Indirizzo non riconosciuto. Esempio: https://nome-del-codespace-8004.app.github.dev';
-      return;
-    }
-    save(name);
-    input.value = '';
-    apply(name);
-  });
-
-  var fromUrl = parse(new URLSearchParams(location.search).get('cs'));
-  if (fromUrl) save(fromUrl);
-  apply(fromUrl || load());
-})();
-</script>
+<script src="/demo.js" defer></script>
 </body>
 </html>

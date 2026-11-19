@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>php-lab · PHP 作品集</title>
+  <meta name="description" content="四个小型 PHP 项目：原生 PHP 8 加 PDO、Laravel、使用 Bootstrap Italia 的 Drupal 10，以及 WordPress。">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="alternate" hreflang="it" href="/">
+  <link rel="alternate" hreflang="en" href="/en/">
+  <link rel="alternate" hreflang="zh" href="/zh/">
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="/zh/">php-lab</a>
+    <nav>
+      <a href="#pdo-crud">pdo-crud</a>
+      <a href="#laravel">Laravel</a>
+      <a href="#drupal10">Drupal 10</a>
+      <a href="#wordpress">WordPress</a>
+      <a href="#demo">演示</a>
+      <a href="/zh/notes/php-cheatsheet/">笔记</a>
+      <a href="https://github.com/Kukutx/php-lab">GitHub</a>
+      <span class="langs"><a href="/zh/" aria-current="page">中文</a><a href="/en/" lang="en" hreflang="en">EN</a><a href="/" lang="it" hreflang="it">IT</a></span>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <h1>php-lab：四个 PHP 项目，从原生 PHP 到 Drupal</h1>
+    <p>一个 monorepo，里面是几个小而专注的练习，其中三个主题相同：一个虚构的意大利市政府（<em>Comune di Esempio</em>）
+      和它发布的公告（<em>avvisi</em>）。每个项目在不同的抽象层次上展示同样的思路，都带测试、静态分析和 CI。</p>
+    <div class="btns">
+      <a class="btn" href="https://github.com/Kukutx/php-lab">GitHub 上的代码</a>
+      <a class="btn ghost" href="https://codespaces.new/Kukutx/php-lab?quickstart=1">在 Codespaces 里试用</a>
+    </div>
+  </section>
+
+  <div class="grid">
+    <a class="card" href="#pdo-crud"><h3>pdo-crud</h3><p>原生 PHP 8 写的联系人增删改查：PDO、PSR-4、enum、CSRF 和 XSS 防护、PHPUnit。</p></a>
+    <a class="card" href="#laravel"><h3>laravel</h3><p>公告栏：路由、Eloquent、Form Request、Blade 组件、功能测试。</p></a>
+    <a class="card" href="#drupal10"><h3>drupal10</h3><p>使用 Bootstrap Italia 的市政网站：内容类型、Views、自定义模块和主题。</p></a>
+    <a class="card" href="#wordpress"><h3>wordpress</h3><p>子主题和插件：自定义文章类型、分类法、meta box、REST 字段、Elementor 小工具。</p></a>
+  </div>
+
+  <section class="app" id="pdo-crud">
+    <h2>pdo-crud</h2>
+    <p class="tagline">不用框架写的通讯录，用来展示框架是由哪些基础部件搭起来的。</p>
+    <ul class="chips"><li>PHP 8.2+</li><li>PDO</li><li>Composer PSR-4</li><li>PHPUnit 11</li><li>PHPStan level 8</li><li>PSR-12</li><li>Bootstrap 5</li></ul>
+    <div class="cols">
+      <div>
+        <h4>要点</h4>
+        <ul>
+          <li>前端控制器 <code>public/index.php</code>：Web 服务器对外暴露的唯一文件。</li>
+          <li><code>readonly</code> 值对象、配合 <code>match</code> 使用的带值 <code>enum</code>、构造器属性提升、命名参数。</li>
+          <li>Repository 接口，PDO 实现里只用预处理语句。</li>
+          <li>CSRF token 用 <code>hash_equals</code> 校验；所有值在输出时都做转义。</li>
+          <li>领域异常转换成 404 / 422 响应。</li>
+        </ul>
+      </div>
+      <div>
+        <h4>测试与检查</h4>
+        <ul>
+          <li>单元测试和集成测试（内存中的 SQLite）。</li>
+          <li>GitHub Actions 里跑 PHPStan level 8 和 PHP_CodeSniffer。</li>
+        </ul>
+        <p><a href="https://github.com/Kukutx/php-lab/tree/main/pdo-crud">查看代码 →</a></p>
+      </div>
+    </div>
+    <div class="shots">
+      <figure><a href="/img/pdo-crud-list.webp"><img src="/img/pdo-crud-list.webp" alt="带搜索和分类筛选的联系人列表" loading="lazy" width="1280" height="800"></a><figcaption>联系人列表</figcaption></figure>
+      <figure><a href="/img/pdo-crud-validation.webp"><img src="/img/pdo-crud-validation.webp" alt="显示校验错误的表单" loading="lazy" width="1280" height="800"></a><figcaption>服务器端校验</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="app" id="laravel">
+    <h2>laravel</h2>
+    <p class="tagline">快速而完整地走一遍 Laravel：一个市政公告栏，有增删改查、筛选、校验和测试。</p>
+    <ul class="chips"><li>Laravel 13</li><li>PHP 8.3</li><li>Eloquent</li><li>Form Requests</li><li>Blade components</li><li>PHPUnit</li></ul>
+    <div class="cols">
+      <div>
+        <h4>要点</h4>
+        <ul>
+          <li><code>Route::resource</code> 配一个包含 7 个动作的控制器，路由模型绑定用 slug。</li>
+          <li>用 Form Request 和 <code>Rule::enum</code> 做校验；模型、校验和视图共用同一个 enum。</li>
+          <li>模型的 cast、scope 和事件；migration、factory 和 seeder。</li>
+          <li>Blade 布局和可复用组件，Bootstrap 5，不需要 Node 构建。</li>
+        </ul>
+      </div>
+      <div>
+        <h4>测试与检查</h4>
+        <ul>
+          <li>使用 <code>RefreshDatabase</code> 的功能测试。</li>
+        </ul>
+        <p>可以和用原生 PHP 写的 pdo-crud 对照，看框架替你做了哪些事。</p>
+        <p><a href="https://github.com/Kukutx/php-lab/tree/main/laravel">查看代码 →</a></p>
+      </div>
+    </div>
+    <div class="shots">
+      <figure><a href="/img/laravel-list.webp"><img src="/img/laravel-list.webp" alt="带分类筛选的公告列表" loading="lazy" width="1280" height="800"></a><figcaption>公告列表</figcaption></figure>
+      <figure><a href="/img/laravel-show.webp"><img src="/img/laravel-show.webp" alt="单条公告的页面" loading="lazy" width="1280" height="800"></a><figcaption>公告详情</figcaption></figure>
+      <figure><a href="/img/laravel-validation.webp"><img src="/img/laravel-validation.webp" alt="带校验提示的表单" loading="lazy" width="1280" height="800"></a><figcaption>用 Form Request 校验</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="app" id="drupal10">
+    <h2>drupal10</h2>
+    <p class="tagline">按 Designers Italia 的"modello Comuni"做的市政网站，带一个自定义模块和一个 Bootstrap Italia 主题。</p>
+    <ul class="chips"><li>Drupal 10.6</li><li>PHP 8.3</li><li>Drush 13</li><li>Bootstrap Italia 2.18</li><li>Twig</li><li>Drupal coder</li></ul>
+    <div class="cols">
+      <div>
+        <h4>要点</h4>
+        <ul>
+          <li><code>avviso</code> 内容类型，关联一个分类法（交通、活动、服务、紧急情况）。</li>
+          <li><code>/avvisi</code> 这个 View：卡片展示、按分类筛选、分页。</li>
+          <li>自定义模块：路由、控制器、依赖注入的服务、配置表单、区块插件。</li>
+          <li>基于 Bootstrap Italia 的自定义 Twig 主题（用 npm 安装，不用 CDN）；render array 上带缓存标签。</li>
+          <li>配置放在 Git 里管理，另有 Drupal 9 升级到 10 和 WCAG 2.1 AA 的笔记。</li>
+        </ul>
+      </div>
+      <div>
+        <h4>更多文档</h4>
+        <ul>
+          <li><a href="https://github.com/Kukutx/php-lab/blob/main/drupal10/docs/upgrade-9-to-10.md">Drupal 9 升级到 10 的步骤</a>（英文）</li>
+          <li><a href="https://github.com/Kukutx/php-lab/blob/main/drupal10/docs/accessibility.md">无障碍基础（WCAG 2.1 AA）</a>（英文）</li>
+          <li><a href="#demo">演示环境的后台登录</a></li>
+        </ul>
+        <p><a href="https://github.com/Kukutx/php-lab/tree/main/drupal10">查看代码 →</a></p>
+      </div>
+    </div>
+    <div class="shots">
+      <figure><a href="/img/drupal10-home.webp"><img src="/img/drupal10-home.webp" alt="市政府首页，显示重点公告" loading="lazy" width="1280" height="2091"></a><figcaption>首页</figcaption></figure>
+      <figure><a href="/img/drupal10-avvisi.webp"><img src="/img/drupal10-avvisi.webp" alt="用 Views 做的公告列表" loading="lazy" width="1280" height="1391"></a><figcaption>公告（带筛选的 View）</figcaption></figure>
+      <figure><a href="/img/drupal10-avviso.webp"><img src="/img/drupal10-avviso.webp" alt="单条公告的页面" loading="lazy" width="1280" height="931"></a><figcaption>单条公告</figcaption></figure>
+      <figure><a href="/img/drupal10-riepilogo.webp"><img src="/img/drupal10-riepilogo.webp" alt="自定义模块的汇总页" loading="lazy" width="1280" height="1097"></a><figcaption>自定义模块页面</figcaption></figure>
+      <figure><a href="/img/drupal10-settings.webp"><img src="/img/drupal10-settings.webp" alt="模块的配置表单" loading="lazy" width="1280" height="900"></a><figcaption>配置表单</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="app" id="wordpress">
+    <h2>wordpress</h2>
+    <p class="tagline">不改核心代码来扩展 WordPress：给同一个市政府做的子主题和公告插件。</p>
+    <ul class="chips"><li>WordPress</li><li>PHP 8.3</li><li>子主题</li><li>自定义文章类型</li><li>REST API</li><li>Elementor</li></ul>
+    <div class="cols">
+      <div>
+        <h4>要点</h4>
+        <ul>
+          <li>基于 Twenty Twenty-One 的子主题：action、filter 和模板层级。</li>
+          <li><code>comune-avvisi</code> 插件：自定义文章类型、分类法和一个 meta box。</li>
+          <li>表单的安全处理：nonce、权限检查、输入清理和输出转义。</li>
+          <li>短代码、通过 REST 暴露的 meta 字段，以及一个自定义 Elementor 小工具。</li>
+        </ul>
+      </div>
+      <div>
+        <h4>更多文档</h4>
+        <ul>
+          <li><a href="https://github.com/Kukutx/php-lab/blob/main/wordpress/docs/elementor.md">Elementor 笔记</a>（英文）</li>
+          <li><a href="#demo">演示环境的 <code>/wp-admin</code> 登录</a></li>
+        </ul>
+        <p><a href="https://github.com/Kukutx/php-lab/tree/main/wordpress">查看代码 →</a></p>
+      </div>
+    </div>
+    <div class="shots">
+      <figure><a href="/img/wordpress-home.webp"><img src="/img/wordpress-home.webp" alt="WordPress 首页，显示最新公告" loading="lazy" width="1280" height="1627"></a><figcaption>首页</figcaption></figure>
+      <figure><a href="/img/wordpress-archive.webp"><img src="/img/wordpress-archive.webp" alt="公告归档" loading="lazy" width="1280" height="1645"></a><figcaption>公告归档</figcaption></figure>
+      <figure><a href="/img/wordpress-single.webp"><img src="/img/wordpress-single.webp" alt="单条公告" loading="lazy" width="1280" height="1560"></a><figcaption>单条公告</figcaption></figure>
+      <figure><a href="/img/wordpress-admin.webp"><img src="/img/wordpress-admin.webp" alt="WordPress 后台的公告列表" loading="lazy" width="1280" height="900"></a><figcaption>后台页面</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="app" id="demo">
+    <h2>在线演示</h2>
+    <p class="tagline">这个页面是部署在 Cloudflare Pages 上的静态网站，不运行 PHP，所以只放了截图。
+      真正的应用跑在 <a href="https://codespaces.new/Kukutx/php-lab?quickstart=1">GitHub Codespaces</a> 里，
+      安装脚本会用 SQLite 和示例内容搭好四个站。</p>
+    <div class="table-wrap">
+      <table class="demo">
+        <thead>
+          <tr><th>站点</th><th>端口</th><th>公开页面</th><th>后台</th><th>账号密码</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>pdo-crud</td><td>8001</td><td><a data-demo="8001/contacts"><code>/contacts</code></a></td><td>–</td><td>–</td></tr>
+          <tr><td>laravel</td><td>8002</td><td><a data-demo="8002/notices"><code>/notices</code></a></td><td>–</td><td>–</td></tr>
+          <tr><td>drupal10</td><td>8003</td><td><a data-demo="8003/"><code>/</code></a></td><td><a data-demo="8003/user/login"><code>/user/login</code></a></td><td><code>admin</code> / <code>admin</code></td></tr>
+          <tr><td>wordpress</td><td>8004</td><td><a data-demo="8004/"><code>/</code></a></td><td><a data-demo="8004/wp-admin/"><code>/wp-admin</code></a></td><td><code>admin</code> / <code>admin</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>在 Codespaces 里：打开 <strong>Ports</strong> 标签页，点端口旁边的地球图标，再在地址后面加上路径。
+      想在这里直接生成链接，就把你的 codespace 任意一个端口的地址粘贴进来：</p>
+    <form class="demo-form" id="demo-form">
+      <label for="demo-url">Codespace 地址</label>
+      <input id="demo-url" type="text" inputmode="url" autocomplete="off" spellcheck="false" placeholder="https://your-codespace-name-8004.app.github.dev">
+      <button class="btn" type="submit">生成链接</button>
+    </form>
+    <p class="demo-status" id="demo-status" role="status"></p>
+    <p class="tagline"><code>admin</code> / <code>admin</code> 只用于这个演示。笔记：
+      <a href="/zh/notes/php-cheatsheet/">PHP 基础速记</a> ·
+      <a href="/zh/notes/how-i-built-it/">php-lab 是怎么做和怎么检查的</a>。</p>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">MIT 许可证 · <a href="https://github.com/Kukutx/php-lab">github.com/Kukutx/php-lab</a></div>
+</footer>
+<script src="/demo.js" defer></script>
+</body>
+</html>

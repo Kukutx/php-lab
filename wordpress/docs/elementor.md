@@ -29,10 +29,10 @@ page settings.
 
 ## Our custom widget
 
-`comune-avvisi` registers an **"Avvisi"** widget when Elementor is active
+The `comune-avvisi` plugin registers an **"Avvisi"** widget when Elementor is active
 (`includes/class-elementor-widget.php`):
 
-- hook: `elementor/widgets/register` — the file is only loaded if Elementor exists;
+- hook: `elementor/widgets/register` — the file is only loaded if Elementor is active;
 - controls: number of notices and category, shown in the Elementor panel;
 - `render()` reuses the same query and template as the `[avvisi]` shortcode.
 
@@ -42,9 +42,9 @@ widget with `[avvisi numero="3"]`.
 > Not tested in the cloud demo: Elementor is downloaded from wordpress.org,
 > which the sandbox cannot reach. Run the install command above in DDEV.
 
-## Good practices
+## Best practices
 
-- Define global colors/fonts first; avoid per-widget styling.
+- Define global colours/fonts first; avoid per-widget styling.
 - Keep business logic in plugins (CPTs, shortcodes, widgets), not in pages.
-- Elementor adds CSS/JS weight: enable "Improved asset loading" and check Lighthouse.
-- Accessibility: use real heading levels, alt text on images, and check contrast.
+- Elementor adds CSS/JS overhead: enable "Improved asset loading" and check the Lighthouse scores.
+- Accessibility: use real heading levels and alt text on images, and check contrast.
