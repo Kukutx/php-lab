@@ -111,6 +111,22 @@ Rule of thumb: **configuration** (content types, fields, views, blocks,
 settings) travels through git; **content** (nodes, terms, users) stays in the
 database of each environment.
 
+## Site assistant (optional)
+
+The theme can show an AI assistant that answers residents' questions from the
+site's own pages ([embed-assistant](https://github.com/Kukutx/embed-assistant)).
+It is off by default. To turn it on, add to `settings.local.php`, then `drush cr`:
+
+```php
+$settings['embed_assistant'] = [
+  'server' => 'https://assistant.example.com',
+  'widget_id' => 'wgt_...',
+];
+```
+
+`comune_theme_page_attachments_alter()` adds the loader script to public pages
+only; admin pages use the Claro theme and never show it.
+
 ## More docs
 
 - [Drupal 9 → 10 upgrade process](docs/upgrade-9-to-10.md): Upgrade Status, Drupal Rector, Composer, CKEditor 5

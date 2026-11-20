@@ -7,6 +7,7 @@
 
 declare(strict_types=1);
 
+use Drupal\Core\Site\Settings;
 use Drupal\node\NodeInterface;
 
 /**
@@ -24,6 +25,32 @@ function comune_theme_asset_url(string $path): string {
  */
 function comune_theme_page_attachments_alter(array &$attachments): void {
   $attachments['#attached']['drupalSettings']['comuneTheme']['fontsPath'] = comune_theme_asset_url('fonts');
+
+  // Optional site assistant (github.com/Kukutx/embed-assistant). Off unless
+  // settings.local.php sets, for example:
+  // $settings['embed_assistant'] = [
+  //   'server' => 'https://assistant.example.com',
+  //   'widget_id' => 'wgt_...',
+  //   'accent_color' => '#0066cc',
+  // ];
+  // The theme only renders public pages (admin pages use Claro), so the
+  // assistant never appears in the back office.
+  $assistant = Settings::get('embed_assistant', []);
+  if (!empty($assistant['server']) && !empty($assistant['widget_id'])) {
+    $attachments['#attached']['html_head'][] = [
+      [
+        '#tag' => 'script',
+        '#attributes' => [
+          'src' => rtrim($assistant['server'], '/') . '/widget/loader.js',
+          'data-widget-id' => $assistant['widget_id'],
+          'data-locale' => 'it',
+          'data-accent-color' => $assistant['accent_color'] ?? '#0066cc',
+          'async' => TRUE,
+        ],
+      ],
+      'embed_assistant',
+    ];
+  }
 }
 
 /**
