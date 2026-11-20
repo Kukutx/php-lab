@@ -1,0 +1,7 @@
+vendor
+web/core
+web/modules/contrib
+web/themes/contrib
+**/node_modules
+web/sites/*/files
+web/sites/*/settings.local.php
